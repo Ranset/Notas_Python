@@ -1,0 +1,2011 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Notas Curso Python básico</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    /*
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    } */
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+
+  <!-- MIS ESTILOS -->
+  <style>
+	body {
+	  padding: 35px;
+	}
+
+	code.sourceCode > span {
+	 color: darkblue;
+	}
+
+	h1, h2, h3, ul, p {
+	  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	}
+
+	.st {
+	  color: #BA2121 !important;
+	}
+
+	.op {
+	  color: darkmagenta !important;
+	}
+
+	.bu {
+	  color: #957b15;
+	  font-weight: bold;
+	}
+
+	.output.stream.stdout {
+	  padding-left: 20px;
+	  padding-top: 0.01em;
+	  padding-bottom: 0.01em;
+	}
+
+	pre.sourceCode {
+	  border: solid;
+	  border-color: darkgrey;
+	  border-width: thin;
+	  padding: 15px;
+	  border-radius: 10px;
+	}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<section id="tema-1-introducción-al-lenguaje-y-conceptos-básicos" class="cell markdown">
+<h1>Tema 1. Introducción al lenguaje y conceptos básicos</h1>
+<h2 id="caracaterísticas-de-python">Caracaterísticas de Python</h2>
+<ul>
+<li>Hay varias implementaciones de Python. La más estandar está escrita en C.</li>
+<li>Python es un lenguaje <strong>interpretado</strong>.</li>
+<li>Soporta programación procedeurar y programación orientada a objetos.</li>
+<li>Soporta tipado dinámico (adivina que tipo de datos es según lo asignemos)</li>
+<li>Es fuertemente tipado. Solamente podemos operar con datos similares (Ej: tengo que sumar int con int y no int con str).</li>
+<li>Muy utilizado para sistemas de backend con frameworks como <strong>Django</strong> y <strong>flask</strong>.</li>
+<li>Posee librerías para acceder a BBDD como <strong>psycopg</strong>, <strong>PyGreSQL</strong>, <strong>PyMongo</strong>, <strong>PySqlite3</strong></li>
+<li>Usado para hacer cálculos complejos y <em>Data Cience</em> con librerías como <strong>NumPy</strong>, <strong>SciPy</strong></li>
+</ul>
+<p>Se pueden hacer interfaces de usuarios con librerías como por ejemplo <strong>PyGTK</strong> y <strong>PyQT</strong>. Y la más usada <strong>tkinter</strong>.</p>
+</section>
+<section id="tema-2-el-intérprete-de-python" class="cell markdown">
+<h1>Tema 2. El intérprete de Python</h1>
+<h2 id="qué-es-un-interprete">¿Qué es un interprete?</h2>
+<p>El intérprete de Python por excelencia es el propio Python.</p>
+<h2 id="donde-esta-python-en-el-so">Donde esta Python en el SO</h2>
+<p>En SO basados en UNIX (LINUX):</p>
+</section>
+<div class="cell code" data-vscode="{&quot;languageId&quot;:&quot;shellscript&quot;}">
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a>usr<span class="op">/</span><span class="bu">bin</span><span class="op">/</span>python</span></code></pre></div>
+</div>
+<div class="cell markdown">
+<p>Para saber la versión de python</p>
+</div>
+<div class="cell code" data-vscode="{&quot;languageId&quot;:&quot;shellscript&quot;}">
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>python <span class="op">--</span>version</span></code></pre></div>
+</div>
+<div class="cell markdown">
+<p>o</p>
+</div>
+<div class="cell code" data-vscode="{&quot;languageId&quot;:&quot;shellscript&quot;}">
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>python2 <span class="op">--</span>version</span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a>python3 <span class="op">--</span>version</span></code></pre></div>
+</div>
+<div class="cell markdown">
+<p>pip: Herramienta que viene instalada con python. Sierve para instalar librerías de python a nivel de sistema.</p>
+<p>Usage:</p>
+</div>
+<div class="cell code" data-vscode="{&quot;languageId&quot;:&quot;shellscript&quot;}">
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>  pip <span class="op">&lt;</span>command<span class="op">&gt;</span> [options]</span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a>Commands:</span>
+<span id="cb4-4"><a href="#cb4-4"></a>  install                     Install packages.</span>
+<span id="cb4-5"><a href="#cb4-5"></a>  download                    Download packages.</span>
+<span id="cb4-6"><a href="#cb4-6"></a>  uninstall                   Uninstall packages.</span>
+<span id="cb4-7"><a href="#cb4-7"></a>  freeze                      Output installed packages <span class="kw">in</span> requirements <span class="bu">format</span>.</span>
+<span id="cb4-8"><a href="#cb4-8"></a>  <span class="bu">list</span>                        List installed packages.</span>
+<span id="cb4-9"><a href="#cb4-9"></a>  show                        Show information about installed packages.</span>
+<span id="cb4-10"><a href="#cb4-10"></a>  check                       Verify installed packages have compatible dependencies.</span>
+<span id="cb4-11"><a href="#cb4-11"></a>  config                      Manage local <span class="kw">and</span> <span class="kw">global</span> configuration.</span>
+<span id="cb4-12"><a href="#cb4-12"></a>  search                      Search PyPI <span class="cf">for</span> packages.</span>
+<span id="cb4-13"><a href="#cb4-13"></a>  cache                       Inspect <span class="kw">and</span> manage pip s wheel cache.</span>
+<span id="cb4-14"><a href="#cb4-14"></a>  wheel                       Build wheels <span class="im">from</span> your requirements.</span>
+<span id="cb4-15"><a href="#cb4-15"></a>  <span class="bu">hash</span>                        Compute hashes of package archives.</span>
+<span id="cb4-16"><a href="#cb4-16"></a>  completion                  A helper command used <span class="cf">for</span> command completion.</span>
+<span id="cb4-17"><a href="#cb4-17"></a>  debug                       Show information useful <span class="cf">for</span> debugging.</span>
+<span id="cb4-18"><a href="#cb4-18"></a>  <span class="bu">help</span>                        Show <span class="bu">help</span> <span class="cf">for</span> commands.</span></code></pre></div>
+</div>
+<div class="cell markdown">
+<p>Cuando importamos un paquete y pone:</p>
+</div>
+<div class="cell code" data-vscode="{&quot;languageId&quot;:&quot;shellscript&quot;}">
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>ModuleNotFoundError: No module named <span class="st">&#39;&lt;nombreDelPaquete&gt;&#39;</span></span></code></pre></div>
+</div>
+<div class="cell markdown">
+<p>Es que falta ese paquete intalado en el sistema. Se soluciona con:</p>
+</div>
+<div class="cell code" data-vscode="{&quot;languageId&quot;:&quot;shellscript&quot;}">
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>pip install <span class="op">&lt;</span>nombreDelPaquete<span class="op">&gt;</span></span></code></pre></div>
+</div>
+<div class="cell markdown">
+<p>Para encontrar paquetes:</p>
+<p>pypi.org</p>
+<p>Para ver paquetes instalados:</p>
+</div>
+<div class="cell code" data-vscode="{&quot;languageId&quot;:&quot;shellscript&quot;}">
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>pip <span class="bu">list</span></span></code></pre></div>
+</div>
+<div class="cell markdown">
+<p>Para ver una info más detallada del paquete:</p>
+</div>
+<div class="cell code" data-vscode="{&quot;languageId&quot;:&quot;shellscript&quot;}">
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>pip show <span class="op">&lt;</span>nombreDelPaquete<span class="op">&gt;</span></span></code></pre></div>
+</div>
+<section id="fichero-requiremetstxt" class="cell markdown">
+<h2>Fichero requiremets.txt</h2>
+<p>Es un fichero que se usa para definir los paquetes necesarios para trabajar en ese programa de python. Se coloca en el mismo directorio donde está el .py</p>
+<p>Dentro se define los paquetes y versiones necesarias, por ejemplo:</p>
+</section>
+<div class="cell code" data-vscode="{&quot;languageId&quot;:&quot;shellscript&quot;}">
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>certifi<span class="op">==</span><span class="fl">2018.10.15</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>chardet <span class="op">&gt;=</span> <span class="fl">3.0.4</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>Click<span class="op">==</span><span class="fl">7.0</span></span></code></pre></div>
+</div>
+<section id="entornos-virtuales" class="cell markdown">
+<h2>Entornos virtuales</h2>
+<h3 id="virtual_env">Virtual_env</h3>
+<p>El problema con pip es que no nos permite tener varias versiones de paquetes inataladas para las necesidades específicas de cada programa python. Para esos se usan los entornos virtuales. Hay varias heramientoas pero la más utilizada es <code>pipenv</code>.</p>
+<p>Cómo se instala pipenv en windows:</p>
+<p><code>pip install pipenv</code></p>
+<h3 id="como-trabajar-con-entornos-virtuales">Como trabajar con entornos virtuales</h3>
+<p>Para crear o activar un entorno virtual con pipenv, nos vamos a la carpeta donde queremos trabajar y ejecutamo:</p>
+<p><code>pipenv shell</code></p>
+<p>Para salir:</p>
+<p><code>exit</code></p>
+<p>Para eliminar un entorno virtual se ejecuta en el directorio del proyecto:</p>
+<p><code>pipenv -rm</code></p>
+<p>Instalar paquetes en el entorno virtual:</p>
+<p><code>pipenv install &lt;nombreDelPaquete&gt;</code></p>
+<p>Si el paquete no existe en pypi.org y lo queremos instalar desde github podemos hacerlo con <code>pipenv</code>. Por ejemplo si queremos instalar SpaCy:</p>
+<p><code>pipenv install -e git+https://github.com/explosion/spaCy#egg=spacy</code></p>
+<p>Después de desarrollar generamos el Pipfile.lock que se asemeja al requiremets.txt donde encontramos los paquetes de nuestro entorno.</p>
+<p><code>pipenv lock</code></p>
+<p>Luego este paquete se lo pasamos a nuestro compañero de desarrollo y cuando lo instale podrá tener el entorno igual que el nuestro.</p>
+<p><code>pipenv install</code></p>
+<p>Para mostrar los paquetes instalados:</p>
+<p><code>pipenv graph</code></p>
+</section>
+<section id="tema-3-tipos-de-objetos" class="cell markdown">
+<h1>Tema 3. Tipos de objetos</h1>
+<h2 id="concepto-de-mutabilidad-e-inmutabilidad">Concepto de mutabilidad e inmutabilidad</h2>
+<p>Python no cambia el valor en la dirección de memoria cuando modificamos una variable, sino que le asigna una nueva dirección de memoria a ese nuevo valor. La dirección de memoria vieja con el valor viejo lo almacena hasta que decida desecharlo. Esta es la inmutabilidad</p>
+<h2 id="tipos-de-datos-inmutables">Tipos de datos inmutables</h2>
+<ol>
+<li>Números (int)</li>
+<li>Cadenas de textos (str)</li>
+<li>Tuplas (tuple) : Son un tipo de lista. El valor va entre paréntisis. Ej: <code>tupla = (a,b,etc..)</code></li>
+</ol>
+<h2 id="tipos-de-datos-mutables">Tipos de datos mutables</h2>
+<p>1- Las listas : Se diferencian con las tuplas en que estas si son mutables (se pueden cambiar). El valor va entre corchetes.</p>
+<p>Ej: <code>lista = [a,b,etc..]</code></p>
+<p>Las listas, como todo en python, también son objetos y tienen métodos que se pueden usar. Por Ej:</p>
+</section>
+<div class="cell code">
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>lista.append[<span class="st">&#39;a&#39;</span>] <span class="co">#Agrega un valor al final</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>lista.remove[elemento] <span class="co">#Quitar un elemento de la lista</span></span></code></pre></div>
+</div>
+<div class="cell markdown">
+<p>2- Diccionarios: Son iguales a json.</p>
+</div>
+<div class="cell code">
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>diccionario <span class="op">=</span> {</span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="st">&#39;clave&#39;</span> : valor</span>
+<span id="cb11-3"><a href="#cb11-3"></a>}</span>
+<span id="cb11-4"><a href="#cb11-4"></a></span>
+<span id="cb11-5"><a href="#cb11-5"></a>diccionario.pop(<span class="st">&#39;clave&#39;</span>) <span class="co">#Elimina el elemento y nos devuelve el valor del elemento eliminado.</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a></span>
+<span id="cb11-7"><a href="#cb11-7"></a>diccionario.<span class="kw">del</span>(<span class="st">&#39;clave&#39;</span>) <span class="co">#Elimina el elemento pero no devuelve el valor del elemento eliminado.</span></span></code></pre></div>
+</div>
+<div class="cell markdown">
+<p>3- Conjuntos (o sets): Parecidos a las listas. La principal diferencia es que no admite valores duplicados.<br />
+Ejemplo:</p>
+</div>
+<div class="cell code" data-execution_count="11">
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>conjunto <span class="op">=</span> {<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">3</span>}</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="bu">print</span>(conjunto)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>{1, 2, 3, 4}
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Además también python trabaja con los otros tipos de datos comunes:</p>
+<p>4- floatantes<br />
+5- Booleanos</p>
+<h2 id="métodos">Métodos</h2>
+<p>Algunos ejemplos de métodos del objeto tipo <em>string</em>:</p>
+</div>
+<div class="cell code" data-execution_count="12">
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>mitexto <span class="op">=</span> <span class="st">&quot;hola soy un texto&quot;</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a></span>
+<span id="cb14-3"><a href="#cb14-3"></a>mitexto.capitalize()</span></code></pre></div>
+<div class="output execute_result" data-execution_count="12">
+<pre><code>&#39;Hola soy un texto&#39;</code></pre>
+</div>
+</div>
+<div class="cell code" data-execution_count="13">
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>mitexto.title()</span></code></pre></div>
+<div class="output execute_result" data-execution_count="13">
+<pre><code>&#39;Hola Soy Un Texto&#39;</code></pre>
+</div>
+</div>
+<div class="cell code" data-execution_count="14">
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>mitexto.lower()</span></code></pre></div>
+<div class="output execute_result" data-execution_count="14">
+<pre><code>&#39;hola soy un texto&#39;</code></pre>
+</div>
+</div>
+<div class="cell code" data-execution_count="15">
+<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>mitexto.upper()</span></code></pre></div>
+<div class="output execute_result" data-execution_count="15">
+<pre><code>&#39;HOLA SOY UN TEXTO&#39;</code></pre>
+</div>
+</div>
+<div class="cell code" data-execution_count="16">
+<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>mitexto.replace(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;o&#39;</span>)</span></code></pre></div>
+<div class="output execute_result" data-execution_count="16">
+<pre><code>&#39;holo soy un texto&#39;</code></pre>
+</div>
+</div>
+<div class="cell code" data-execution_count="17">
+<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>mitexto.find(<span class="st">&#39;soy&#39;</span>)</span></code></pre></div>
+<div class="output execute_result" data-execution_count="17">
+<pre><code>5</code></pre>
+</div>
+</div>
+<div class="cell code" data-execution_count="18">
+<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a><span class="co">#convertir en lista (espacio como separador)</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a>mitexto.split()</span></code></pre></div>
+<div class="output execute_result" data-execution_count="18">
+<pre><code>[&#39;hola&#39;, &#39;soy&#39;, &#39;un&#39;, &#39;texto&#39;]</code></pre>
+</div>
+</div>
+<div class="cell code" data-execution_count="19">
+<div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a><span class="co">#convertir en lista (- como separador)</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a>separar <span class="op">=</span> <span class="st">&quot;texto-a-separar&quot;</span></span>
+<span id="cb28-3"><a href="#cb28-3"></a>separar.split(<span class="st">&#39;-&#39;</span>)</span></code></pre></div>
+<div class="output execute_result" data-execution_count="19">
+<pre><code>[&#39;texto&#39;, &#39;a&#39;, &#39;separar&#39;]</code></pre>
+</div>
+</div>
+<div class="cell code" data-execution_count="20">
+<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a><span class="co">#Se pueden combinar metodos</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a>mitexto.upper().replace(<span class="st">&#39;O&#39;</span>,<span class="st">&#39;I&#39;</span>).split()</span></code></pre></div>
+<div class="output execute_result" data-execution_count="20">
+<pre><code>[&#39;HILA&#39;, &#39;SIY&#39;, &#39;UN&#39;, &#39;TEXTI&#39;]</code></pre>
+</div>
+</div>
+<div class="cell code" data-execution_count="23">
+<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a><span class="co">#Convertir listas a cadenas</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a>listatexto <span class="op">=</span> [<span class="st">&#39;hola&#39;</span>,<span class="st">&#39;soy&#39;</span>,<span class="st">&#39;un&#39;</span>,<span class="st">&#39;texto&#39;</span>]</span>
+<span id="cb32-3"><a href="#cb32-3"></a><span class="co">&#39; &#39;</span>.join(listatexto)</span></code></pre></div>
+<div class="output execute_result" data-execution_count="23">
+<pre><code>&#39;hola soy un texto&#39;</code></pre>
+</div>
+</div>
+<div class="cell code" data-execution_count="24">
+<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a>listatexto <span class="op">=</span> [<span class="st">&#39;hola&#39;</span>,<span class="st">&#39;soy&#39;</span>,<span class="st">&#39;un&#39;</span>,<span class="st">&#39;texto&#39;</span>]</span>
+<span id="cb34-2"><a href="#cb34-2"></a><span class="co">&#39;-&#39;</span>.join(listatexto)</span></code></pre></div>
+<div class="output execute_result" data-execution_count="24">
+<pre><code>&#39;hola-soy-un-texto&#39;</code></pre>
+</div>
+</div>
+<section id="operadores" class="cell markdown">
+<h2>Operadores</h2>
+<h3 id="aritméticos">Aritméticos</h3>
+<pre class="power"><code>+ suma
+- resta
+* multiplicar
+/ dividir
+
+** potencia
+3 ** 2 (ej: 3 elevado a la dos es 9)</code></pre>
+<h3 id="de-asignación">De asignación</h3>
+<pre class="power"><code>a = 5
+a += 5
+a -= 5
+a *= 5
+a /= 5
+a **= 2</code></pre>
+<h3 id="comparación">Comparación</h3>
+<pre class="power"><code>==
+!=
+&gt;
+&lt;
+&gt;=
+&lt;=</code></pre>
+<h3 id="concatenadores">Concatenadores</h3>
+<pre class="power"><code>and, &amp;&amp;
+or</code></pre>
+</section>
+<section id="tema-4-estructuras-de-control" class="cell markdown">
+<h1>Tema 4. Estructuras de control</h1>
+<h2 id="control-de-flujo">Control de flujo</h2>
+<p>El control de flujo en un programa guía la ejecución del mismo. Podemos utilizar dos tipos de condiciones. Una que se cumple, <em>Si y solo si</em>, y otra que se cumple <em>mientras no ocurra algo</em>.</p>
+<h2 id="sentencias-condicionales">Sentencias condicionales</h2>
+<h3 id="if">if</h3>
+</section>
+<div class="cell code">
+<div class="sourceCode" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a><span class="cf">if</span> a <span class="op">==</span> b:</span>
+<span id="cb40-2"><a href="#cb40-2"></a>  <span class="bu">print</span>(<span class="st">&quot;Estoy dentro del if&quot;</span>)</span>
+<span id="cb40-3"><a href="#cb40-3"></a></span>
+<span id="cb40-4"><a href="#cb40-4"></a><span class="co"># If, else if y else</span></span>
+<span id="cb40-5"><a href="#cb40-5"></a><span class="cf">if</span> a <span class="op">&gt;=</span> <span class="dv">5</span> <span class="kw">and</span> b <span class="op">&lt;</span> <span class="dv">6</span>:</span>
+<span id="cb40-6"><a href="#cb40-6"></a>  <span class="bu">print</span>(<span class="st">&quot;Dentro del if 1&quot;</span>)</span>
+<span id="cb40-7"><a href="#cb40-7"></a><span class="cf">elif</span> b <span class="op">&gt;</span> <span class="dv">6</span>:</span>
+<span id="cb40-8"><a href="#cb40-8"></a>  <span class="bu">print</span>(<span class="st">&quot;Dentro del otro if&quot;</span>)</span>
+<span id="cb40-9"><a href="#cb40-9"></a><span class="cf">else</span>:</span>
+<span id="cb40-10"><a href="#cb40-10"></a>  <span class="bu">print</span>(<span class="st">&quot;No se cumplió nada de lo anterior&quot;</span>)</span></code></pre></div>
+</div>
+<div class="cell markdown">
+<p>También se puede usar para encontrar un elemento.</p>
+</div>
+<div class="cell code">
+<div class="sourceCode" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a>lista <span class="op">=</span> [<span class="st">&quot;Hola&quot;</span>, <span class="st">&quot;mensaje&quot;</span>, <span class="st">&quot;adios&quot;</span>]</span>
+<span id="cb41-2"><a href="#cb41-2"></a></span>
+<span id="cb41-3"><a href="#cb41-3"></a><span class="cf">if</span> <span class="st">&quot;mensaje&quot;</span> <span class="kw">in</span> lista:</span>
+<span id="cb41-4"><a href="#cb41-4"></a>  <span class="bu">print</span>(<span class="st">&quot;He encontrado el mensaje&quot;</span>)</span>
+<span id="cb41-5"><a href="#cb41-5"></a></span>
+<span id="cb41-6"><a href="#cb41-6"></a><span class="cf">if</span> <span class="st">&quot;mensaje&quot;</span> <span class="kw">not</span> <span class="kw">in</span> lista:</span>
+<span id="cb41-7"><a href="#cb41-7"></a>  <span class="bu">print</span>(<span class="st">&quot;No he encontrado el mensaje&quot;</span>)</span></code></pre></div>
+</div>
+<section id="while" class="cell markdown">
+<h3>while</h3>
+</section>
+<div class="cell code">
+<div class="sourceCode" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1"></a><span class="co"># while MIENTRAS SEA TRUE:</span></span>
+<span id="cb42-2"><a href="#cb42-2"></a><span class="co">#    SE EJECUTA</span></span>
+<span id="cb42-3"><a href="#cb42-3"></a></span>
+<span id="cb42-4"><a href="#cb42-4"></a>contador <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb42-5"><a href="#cb42-5"></a></span>
+<span id="cb42-6"><a href="#cb42-6"></a><span class="cf">while</span> contador <span class="op">&lt;=</span> <span class="dv">10</span>:</span>
+<span id="cb42-7"><a href="#cb42-7"></a>  <span class="bu">print</span>(<span class="st">&quot;El contador vale&quot;</span>, contador)</span>
+<span id="cb42-8"><a href="#cb42-8"></a>  contador <span class="op">+=</span> <span class="dv">1</span></span></code></pre></div>
+</div>
+<div class="cell markdown">
+<p>Lo que ocurre dentro de un bucle se llama iteración.</p>
+</div>
+<div class="cell code">
+<div class="sourceCode" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a><span class="co"># Ejemplo de dos sentencias condicionales juntas.</span></span>
+<span id="cb43-2"><a href="#cb43-2"></a><span class="co"># Muestra si el número es par</span></span>
+<span id="cb43-3"><a href="#cb43-3"></a></span>
+<span id="cb43-4"><a href="#cb43-4"></a><span class="cf">while</span> contador <span class="op">&lt;=</span> <span class="dv">10</span>:</span>
+<span id="cb43-5"><a href="#cb43-5"></a>  <span class="cf">if</span> contador <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb43-6"><a href="#cb43-6"></a>    <span class="bu">print</span>(contador, <span class="st">&quot;es un número par&quot;</span>)</span>
+<span id="cb43-7"><a href="#cb43-7"></a>  contador <span class="op">+=</span> <span class="dv">1</span></span></code></pre></div>
+</div>
+<section id="palabras-reservadas-break-y-continue" class="cell markdown">
+<h3>Palabras reservadas <em>break y continue</em></h3>
+<p>La palabra reservada <em>break</em> finaliza la ejecución del bucle anterior y sale del mismo.</p>
+</section>
+<div class="cell code">
+<div class="sourceCode" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a><span class="cf">while</span> contador <span class="op">&lt;=</span> <span class="dv">10</span>:</span>
+<span id="cb44-2"><a href="#cb44-2"></a>  <span class="bu">print</span>(<span class="st">&quot;Contador vale&quot;</span>, contador)</span>
+<span id="cb44-3"><a href="#cb44-3"></a></span>
+<span id="cb44-4"><a href="#cb44-4"></a>  <span class="cf">if</span> contador <span class="op">==</span> <span class="dv">5</span>:</span>
+<span id="cb44-5"><a href="#cb44-5"></a>    <span class="cf">break</span></span>
+<span id="cb44-6"><a href="#cb44-6"></a>  </span>
+<span id="cb44-7"><a href="#cb44-7"></a>  contador <span class="op">+=</span> <span class="dv">1</span></span></code></pre></div>
+</div>
+<div class="cell markdown">
+<p>La palabra reservada <em>continue</em> regresa al principio del bucle y no ejecuta lo que está por debajo.</p>
+</div>
+<div class="cell code">
+<div class="sourceCode" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1"></a><span class="co"># Ejemplo de bucle infinito</span></span>
+<span id="cb45-2"><a href="#cb45-2"></a></span>
+<span id="cb45-3"><a href="#cb45-3"></a><span class="cf">while</span> contador <span class="op">&lt;=</span> <span class="dv">10</span>:</span>
+<span id="cb45-4"><a href="#cb45-4"></a>  <span class="bu">print</span>(<span class="st">&quot;Contador vale&quot;</span>, contador)</span>
+<span id="cb45-5"><a href="#cb45-5"></a>  <span class="cf">continue</span></span>
+<span id="cb45-6"><a href="#cb45-6"></a></span>
+<span id="cb45-7"><a href="#cb45-7"></a>  contador <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb45-8"><a href="#cb45-8"></a></span>
+<span id="cb45-9"><a href="#cb45-9"></a><span class="co"># Nunca se llega a ejecutar el incremento</span></span></code></pre></div>
+</div>
+<section id="bucle-for" class="cell markdown">
+<h2>Bucle for</h2>
+</section>
+<div class="cell code">
+<div class="sourceCode" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1"></a><span class="co"># SINTAXIS</span></span>
+<span id="cb46-2"><a href="#cb46-2"></a><span class="co"># for valor in elemento:</span></span>
+<span id="cb46-3"><a href="#cb46-3"></a><span class="co">#   acción</span></span>
+<span id="cb46-4"><a href="#cb46-4"></a></span>
+<span id="cb46-5"><a href="#cb46-5"></a><span class="co"># Ejemplo recorrer una lista</span></span>
+<span id="cb46-6"><a href="#cb46-6"></a></span>
+<span id="cb46-7"><a href="#cb46-7"></a>miLista <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
+<span id="cb46-8"><a href="#cb46-8"></a></span>
+<span id="cb46-9"><a href="#cb46-9"></a><span class="cf">for</span> valorActual <span class="kw">in</span> miLista:</span>
+<span id="cb46-10"><a href="#cb46-10"></a>  <span class="bu">print</span>(<span class="st">&quot;El valor actual es:&quot;</span>, valorActual)</span>
+<span id="cb46-11"><a href="#cb46-11"></a></span>
+<span id="cb46-12"><a href="#cb46-12"></a><span class="co"># valorActual es una variable que se declara en el momento y coge el valor del elemento que se recorre en miLista.</span></span></code></pre></div>
+</div>
+<div class="cell markdown">
+<p>Otro ejemplo de la utlización del <em>for</em></p>
+<p>La función <code>range()</code> nos devuelve todo los números entre 0 y el número especificado ej: <code>range(10)</code> o entre un rango de dos números ej: <code>range(5, 9)</code></p>
+</div>
+<div class="cell code" data-execution_count="27">
+<div class="sourceCode" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1"></a><span class="cf">for</span> numero <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>, <span class="dv">10</span>):</span>
+<span id="cb47-2"><a href="#cb47-2"></a>  <span class="bu">print</span>(numero)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>5
+6
+7
+8
+9
+</code></pre>
+</div>
+</div>
+<section id="recorrer-dicionarios-con-bucle-for" class="cell markdown">
+<h3>Recorrer dicionarios con bucle for</h3>
+</section>
+<div class="cell code" data-execution_count="29">
+<div class="sourceCode" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1"></a>diccionario <span class="op">=</span> {</span>
+<span id="cb49-2"><a href="#cb49-2"></a>  <span class="st">&#39;nombre&#39;</span> : <span class="st">&quot;Carlos&quot;</span>,</span>
+<span id="cb49-3"><a href="#cb49-3"></a>  <span class="st">&#39;apellido&#39;</span> : <span class="st">&quot;Ace&quot;</span></span>
+<span id="cb49-4"><a href="#cb49-4"></a>}</span>
+<span id="cb49-5"><a href="#cb49-5"></a></span>
+<span id="cb49-6"><a href="#cb49-6"></a><span class="cf">for</span> key, value <span class="kw">in</span> diccionario.items():</span>
+<span id="cb49-7"><a href="#cb49-7"></a>  <span class="bu">print</span>(key, <span class="st">&quot;=&quot;</span>, value)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>nombre = Carlos
+apellido = Ace
+</code></pre>
+</div>
+</div>
+<section id="match" class="cell markdown">
+<h2>match</h2>
+<p>A partir de la versión 3.10 de python se puede hacer una especie de switch con la palabra reservada <em>match</em>.</p>
+</section>
+<div class="cell code">
+<div class="sourceCode" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1"></a>valor <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb51-2"><a href="#cb51-2"></a></span>
+<span id="cb51-3"><a href="#cb51-3"></a>match valor:</span>
+<span id="cb51-4"><a href="#cb51-4"></a>  case <span class="dv">1</span>:</span>
+<span id="cb51-5"><a href="#cb51-5"></a>    <span class="bu">print</span>(<span class="st">&quot;Valor es igual a 1&quot;</span>)</span>
+<span id="cb51-6"><a href="#cb51-6"></a>  case <span class="dv">2</span>:</span>
+<span id="cb51-7"><a href="#cb51-7"></a>    <span class="bu">print</span>(<span class="st">&quot;Valor es igual a 2&quot;</span>)</span>
+<span id="cb51-8"><a href="#cb51-8"></a>  case <span class="dv">3</span>:</span>
+<span id="cb51-9"><a href="#cb51-9"></a>    <span class="bu">print</span>(<span class="st">&quot;Valor es igual a 3&quot;</span>)</span></code></pre></div>
+</div>
+<section id="pass" class="cell markdown">
+<h2>pass</h2>
+<p>La palabra reservada <em>pass</em> sirve para poder poner un bucle, una función, un método, etc... vacío sin que se genere un error.</p>
+</section>
+<div class="cell code">
+<div class="sourceCode" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1"></a><span class="cf">for</span> numero <span class="kw">in</span> lista:</span>
+<span id="cb52-2"><a href="#cb52-2"></a>  <span class="cf">pass</span></span></code></pre></div>
+</div>
+<section id="tema-5-definición-y-uso-de-funciones" class="cell markdown">
+<h1>Tema 5. Definición y uso de funciones</h1>
+<p>Las funciones son una forma de escribir código reutilizable.</p>
+</section>
+<div class="cell code">
+<div class="sourceCode" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1"></a><span class="co"># Ejemplo Sintaxis de función</span></span>
+<span id="cb53-2"><a href="#cb53-2"></a><span class="kw">def</span> nombreDeFuncion([parámetros]):</span>
+<span id="cb53-3"><a href="#cb53-3"></a>  <span class="co">#Código</span></span></code></pre></div>
+</div>
+<div class="cell markdown">
+<p><strong>En Python las funciones deben ser definidas antes de utilizarlas</strong></p>
+<h2 id="palabra-reservada-global">Palabra reservada <em>global</em></h2>
+<p>La palabra reservada <em>global</em> sirve para modificar una variable global dentro de un ámbito local.</p>
+</div>
+<div class="cell code" data-execution_count="32">
+<div class="sourceCode" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1"></a>hoyHace <span class="op">=</span> <span class="fl">12.0</span></span>
+<span id="cb54-2"><a href="#cb54-2"></a></span>
+<span id="cb54-3"><a href="#cb54-3"></a><span class="kw">def</span> miFuncion():</span>
+<span id="cb54-4"><a href="#cb54-4"></a>  <span class="co">#Manipulamos la variable global desde el ámbito local de la función</span></span>
+<span id="cb54-5"><a href="#cb54-5"></a>  <span class="kw">global</span> hoyHace</span>
+<span id="cb54-6"><a href="#cb54-6"></a></span>
+<span id="cb54-7"><a href="#cb54-7"></a>  hoyHace <span class="op">=</span> <span class="fl">6.0</span></span>
+<span id="cb54-8"><a href="#cb54-8"></a></span>
+<span id="cb54-9"><a href="#cb54-9"></a>miFuncion()</span>
+<span id="cb54-10"><a href="#cb54-10"></a><span class="bu">print</span>(<span class="st">&quot;La temperatura es de:&quot;</span>, hoyHace)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>La temperatura es de: 6.0
+</code></pre>
+</div>
+</div>
+<section id="parámetros-opcionales" class="cell markdown">
+<h2>Parámetros opcionales</h2>
+<p>Podemos definir parámetros opcionales en las funciones que tomen un valor por defecto en caso de no haber pasado ningún parámetro en el momento de llamar a la función.</p>
+</section>
+<div class="cell code" data-execution_count="33">
+<div class="sourceCode" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1"></a><span class="kw">def</span> miFuncion(nombre<span class="op">=</span><span class="st">&quot;Ranset&quot;</span>):</span>
+<span id="cb56-2"><a href="#cb56-2"></a>  <span class="bu">print</span>(<span class="st">&quot;Hola&quot;</span>, nombre)</span>
+<span id="cb56-3"><a href="#cb56-3"></a></span>
+<span id="cb56-4"><a href="#cb56-4"></a>miFuncion()</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>Hola Ranset
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>La única regla que deben cumplir es que <strong>después de un parámetro opcional no puede haber uno obligatorio</strong>. Osea deben ser todos o los últimos opcionales.</p>
+</div>
+<div class="cell code">
+<div class="sourceCode" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1"></a><span class="co"># Error</span></span>
+<span id="cb58-2"><a href="#cb58-2"></a><span class="kw">def</span> sumar (a, b<span class="op">=</span><span class="dv">5</span>, c):</span>
+<span id="cb58-3"><a href="#cb58-3"></a>  <span class="bu">print</span>(a <span class="op">+</span> b <span class="op">+</span> c)</span>
+<span id="cb58-4"><a href="#cb58-4"></a></span>
+<span id="cb58-5"><a href="#cb58-5"></a>  <span class="co"># Correcto</span></span>
+<span id="cb58-6"><a href="#cb58-6"></a><span class="kw">def</span> sumar (a, b, c<span class="op">=</span><span class="dv">4</span>):</span>
+<span id="cb58-7"><a href="#cb58-7"></a>  <span class="bu">print</span>(a <span class="op">+</span> b <span class="op">+</span> c)</span>
+<span id="cb58-8"><a href="#cb58-8"></a></span>
+<span id="cb58-9"><a href="#cb58-9"></a>  <span class="co"># Correcto</span></span>
+<span id="cb58-10"><a href="#cb58-10"></a><span class="kw">def</span> sumar (a, b<span class="op">=</span><span class="dv">5</span>, c<span class="op">=</span><span class="dv">4</span>):</span>
+<span id="cb58-11"><a href="#cb58-11"></a>  <span class="bu">print</span>(a <span class="op">+</span> b <span class="op">+</span> c)</span></code></pre></div>
+</div>
+<section id="parámetros-con-nombres-named-parameter" class="cell markdown">
+<h2>Parámetros con nombres (Named Parameter)</h2>
+<p>Se pueden pasar los parámetros en el orden que queramos indicando su nombre.</p>
+<p>Ej: Si queremos modificar solo el último parámetro sin indicar el valor de los anteriores</p>
+</section>
+<div class="cell code" data-execution_count="36">
+<div class="sourceCode" id="cb59"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1"></a><span class="kw">def</span> sumar (a<span class="op">=</span><span class="dv">1</span>, b<span class="op">=</span><span class="dv">5</span>, c<span class="op">=</span><span class="dv">4</span>):</span>
+<span id="cb59-2"><a href="#cb59-2"></a>  <span class="bu">print</span>(a <span class="op">+</span> b <span class="op">+</span> c)</span>
+<span id="cb59-3"><a href="#cb59-3"></a></span>
+<span id="cb59-4"><a href="#cb59-4"></a>sumar(c<span class="op">=</span><span class="dv">8</span>)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>14
+</code></pre>
+</div>
+</div>
+<section id="parámetros-variables" class="cell markdown">
+<h2>Parámetros variables</h2>
+<p>Los parámetros variables indican que una función puede tener 0 o más parámetros. Se definen con un asterisco (*) delante del parámetro de la función que por convención se utiliza **args*. Esto crea una variable local de tipo tupla que puede ser utilizada dentro de la función.</p>
+<p>Ejemplo usando parámetros variables para sumar n cantidad de números:</p>
+</section>
+<div class="cell code" data-execution_count="35">
+<div class="sourceCode" id="cb61"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1"></a><span class="kw">def</span> sumar(<span class="op">*</span>args):</span>
+<span id="cb61-2"><a href="#cb61-2"></a>  resultado <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb61-3"><a href="#cb61-3"></a></span>
+<span id="cb61-4"><a href="#cb61-4"></a>  <span class="cf">for</span> numero <span class="kw">in</span> args:</span>
+<span id="cb61-5"><a href="#cb61-5"></a>    resultado <span class="op">+=</span> numero</span>
+<span id="cb61-6"><a href="#cb61-6"></a></span>
+<span id="cb61-7"><a href="#cb61-7"></a>  <span class="bu">print</span>(resultado)</span>
+<span id="cb61-8"><a href="#cb61-8"></a></span>
+<span id="cb61-9"><a href="#cb61-9"></a>sumar(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">4</span>, <span class="dv">0</span>)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>15
+</code></pre>
+</div>
+</div>
+<section id="parámetros-variables-con-nombres" class="cell markdown">
+<h2>Parámetros variables con nombres</h2>
+<p>Los parámetros con nombres indican que una función puede tener n cantidad de parámetros nombrados. Se definen con un doble asterisco (**) delante del parámetro de la función que por convención se utiliza <em>kwargs</em>. Esto crea una variable local de tipo diccionario que puede ser utilizada dentro de la función.</p>
+</section>
+<div class="cell code" data-execution_count="37">
+<div class="sourceCode" id="cb63"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1"></a><span class="kw">def</span> mostrar(<span class="op">**</span>kwargs):</span>
+<span id="cb63-2"><a href="#cb63-2"></a>  <span class="cf">for</span> key, value <span class="kw">in</span> kwargs.items():</span>
+<span id="cb63-3"><a href="#cb63-3"></a>    <span class="bu">print</span>(key, <span class="st">&quot;=&quot;</span>, value)</span>
+<span id="cb63-4"><a href="#cb63-4"></a></span>
+<span id="cb63-5"><a href="#cb63-5"></a>mostrar(nombre<span class="op">=</span><span class="st">&quot;Carlos&quot;</span>, apellido<span class="op">=</span><span class="st">&quot;Ace&quot;</span>)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>nombre = Carlos
+apellido = Ace
+</code></pre>
+</div>
+</div>
+<section id="devolver-valor-de-función-return" class="cell markdown">
+<h2>Devolver valor de función (return)</h2>
+<p>Para devolver el valor de una función se hace con la palabra reservada <em>return</em></p>
+</section>
+<div class="cell code">
+<div class="sourceCode" id="cb65"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1"></a><span class="kw">def</span> sumar(a, b):</span>
+<span id="cb65-2"><a href="#cb65-2"></a>  <span class="cf">return</span> a <span class="op">+</span> b</span></code></pre></div>
+</div>
+<div class="cell markdown">
+<p>Se pueden devolver varios resultados en una tupla</p>
+</div>
+<div class="cell code" data-execution_count="38">
+<div class="sourceCode" id="cb66"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1"></a><span class="kw">def</span> operaciones(a, b):</span>
+<span id="cb66-2"><a href="#cb66-2"></a>  <span class="cf">return</span> a <span class="op">+</span> b, a <span class="op">-</span> b, a <span class="op">*</span> b, a <span class="op">/</span> b</span>
+<span id="cb66-3"><a href="#cb66-3"></a></span>
+<span id="cb66-4"><a href="#cb66-4"></a>resultado <span class="op">=</span> operaciones(<span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb66-5"><a href="#cb66-5"></a><span class="bu">print</span>(resultado)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>(6, -2, 8, 0.5)
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Se puede asignar los valores de la tupla a varias variables consecutivas. La cantidad de variables debe ser exacta a la cantidad de valores devueltos en la tupla.</p>
+</div>
+<div class="cell code" data-execution_count="40">
+<div class="sourceCode" id="cb68"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1"></a><span class="kw">def</span> operaciones(a, b):</span>
+<span id="cb68-2"><a href="#cb68-2"></a>    <span class="cf">return</span> a <span class="op">+</span> b, a <span class="op">-</span> b, a <span class="op">*</span> b, a <span class="op">/</span> b</span>
+<span id="cb68-3"><a href="#cb68-3"></a></span>
+<span id="cb68-4"><a href="#cb68-4"></a>suma, resta, multi, divi <span class="op">=</span> operaciones(<span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb68-5"><a href="#cb68-5"></a></span>
+<span id="cb68-6"><a href="#cb68-6"></a><span class="bu">print</span>(suma)</span>
+<span id="cb68-7"><a href="#cb68-7"></a><span class="bu">print</span>(resta)</span>
+<span id="cb68-8"><a href="#cb68-8"></a><span class="bu">print</span>(multi)</span>
+<span id="cb68-9"><a href="#cb68-9"></a><span class="bu">print</span>(divi)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>6
+-2
+8
+0.5
+</code></pre>
+</div>
+</div>
+<section id="funciones-anónimas-lambda" class="cell markdown">
+<h2>Funciones Anónimas (Lambda)</h2>
+</section>
+<div class="cell markdown">
+<p>Una función anónima es una función asignada a una variable.</p>
+</div>
+<div class="cell code" data-execution_count="3">
+<div class="sourceCode" id="cb70"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1"></a><span class="co"># Sintaxis:</span></span>
+<span id="cb70-2"><a href="#cb70-2"></a><span class="co">#variable = lambda parametros: código...</span></span>
+<span id="cb70-3"><a href="#cb70-3"></a></span>
+<span id="cb70-4"><a href="#cb70-4"></a>miAnomFuncion <span class="op">=</span> <span class="kw">lambda</span> nombre, apellido: <span class="bu">print</span>(<span class="ss">f&quot;Hola </span><span class="sc">{</span>nombre<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>apellido<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb70-5"><a href="#cb70-5"></a></span>
+<span id="cb70-6"><a href="#cb70-6"></a>miAnomFuncion(<span class="st">&#39;Carlos&#39;</span>, <span class="st">&#39;Ace&#39;</span>)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>Hola Carlos Ace
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Las funciones <em>lambda</em> no usan <em>return</em> para devolver un valor. Simplemente se realiza la operación sin indicar nada y se devuelve el resultado.</p>
+</div>
+<div class="cell code" data-execution_count="4">
+<div class="sourceCode" id="cb72"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1"></a>sumar <span class="op">=</span> <span class="kw">lambda</span> x: x<span class="op">*</span><span class="dv">2</span></span>
+<span id="cb72-2"><a href="#cb72-2"></a></span>
+<span id="cb72-3"><a href="#cb72-3"></a><span class="bu">print</span>(sumar(<span class="dv">4</span>))</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>8
+</code></pre>
+</div>
+</div>
+<section id="tema-6-clases-y-objetos" class="cell markdown">
+<h1>Tema 6. Clases y Objetos</h1>
+<p>Para implementar una clase se usa la palabra reservada <em>class</em></p>
+</section>
+<div class="cell code">
+<div class="sourceCode" id="cb74"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1"></a><span class="co"># SYNTAXIS:</span></span>
+<span id="cb74-2"><a href="#cb74-2"></a><span class="co"># class NOMBRE DE LA CLASE:</span></span>
+<span id="cb74-3"><a href="#cb74-3"></a><span class="co">#   ...Propiedades</span></span>
+<span id="cb74-4"><a href="#cb74-4"></a><span class="co">#   ...Métodos</span></span>
+<span id="cb74-5"><a href="#cb74-5"></a></span>
+<span id="cb74-6"><a href="#cb74-6"></a><span class="kw">class</span> Dino:</span>
+<span id="cb74-7"><a href="#cb74-7"></a>    encendido <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb74-8"><a href="#cb74-8"></a></span>
+<span id="cb74-9"><a href="#cb74-9"></a>    <span class="kw">def</span> Encender ():</span>
+<span id="cb74-10"><a href="#cb74-10"></a>        <span class="cf">pass</span></span></code></pre></div>
+</div>
+<div class="cell markdown">
+<p>Para usar un método de una clase hay que instanciarla. Se realiza creando una variable del tipo objeto de la clase</p>
+</div>
+<div class="cell code">
+<div class="sourceCode" id="cb75"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1"></a>d <span class="op">=</span> Dino()</span>
+<span id="cb75-2"><a href="#cb75-2"></a>d.Encender()</span></code></pre></div>
+</div>
+<div class="cell markdown">
+<p>Las clases en Python son diccionarios con una syntaxis especial.</p>
+<p>En Python todas las propiedades y métodos son públicas.</p>
+<p>Existe una convención en Python que nos dice que si un método o propiedad comienza con un guión bajo (_) NO deberíamos manipularla desde fuera de la clase.</p>
+<p>Si queremos modificar un parámetro de la clase, pero lo estamos haciendo dentro del ámbito de un método de la clase, debemos anteponerle la palabra <em>self.</em></p>
+</div>
+<div class="cell code" data-execution_count="4">
+<div class="sourceCode" id="cb76"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1"></a><span class="kw">class</span> Dino:</span>
+<span id="cb76-2"><a href="#cb76-2"></a>    _encendido <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb76-3"><a href="#cb76-3"></a></span>
+<span id="cb76-4"><a href="#cb76-4"></a>    <span class="kw">def</span> encender(<span class="va">self</span>):</span>
+<span id="cb76-5"><a href="#cb76-5"></a>        <span class="va">self</span>._encendido <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb76-6"><a href="#cb76-6"></a></span>
+<span id="cb76-7"><a href="#cb76-7"></a>    <span class="kw">def</span> isEncendido(<span class="va">self</span>):</span>
+<span id="cb76-8"><a href="#cb76-8"></a>        <span class="cf">return</span> <span class="va">self</span>._encendido</span>
+<span id="cb76-9"><a href="#cb76-9"></a></span>
+<span id="cb76-10"><a href="#cb76-10"></a>d <span class="op">=</span> Dino()</span>
+<span id="cb76-11"><a href="#cb76-11"></a>d.encender()</span>
+<span id="cb76-12"><a href="#cb76-12"></a>d.isEncendido()</span></code></pre></div>
+<div class="output execute_result" data-execution_count="4">
+<pre><code>True</code></pre>
+</div>
+</div>
+<section id="herencia" class="cell markdown">
+<h2>Herencia</h2>
+<p>Heredar propiedades y métodos de otra clase</p>
+</section>
+<div class="cell code">
+<div class="sourceCode" id="cb78"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1"></a><span class="co"># SYNTAXIS:</span></span>
+<span id="cb78-2"><a href="#cb78-2"></a><span class="co"># class NOMBRE (HERENCIA 1, Herencia 2,...)</span></span></code></pre></div>
+</div>
+<div class="cell markdown">
+<p><strong>Ejemplo</strong></p>
+</div>
+<div class="cell code" data-execution_count="5">
+<div class="sourceCode" id="cb79"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1"></a><span class="kw">class</span> Juguete:</span>
+<span id="cb79-2"><a href="#cb79-2"></a>    _encendido <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb79-3"><a href="#cb79-3"></a></span>
+<span id="cb79-4"><a href="#cb79-4"></a>    <span class="kw">def</span> encender(<span class="va">self</span>):</span>
+<span id="cb79-5"><a href="#cb79-5"></a>        <span class="va">self</span>._encendido <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb79-6"><a href="#cb79-6"></a></span>
+<span id="cb79-7"><a href="#cb79-7"></a>    <span class="kw">def</span> isEncendido(<span class="va">self</span>):</span>
+<span id="cb79-8"><a href="#cb79-8"></a>        <span class="cf">return</span> <span class="va">self</span>._encendido</span>
+<span id="cb79-9"><a href="#cb79-9"></a></span>
+<span id="cb79-10"><a href="#cb79-10"></a><span class="kw">class</span> Dina(Juguete):</span>
+<span id="cb79-11"><a href="#cb79-11"></a>    _hablar <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb79-12"><a href="#cb79-12"></a></span>
+<span id="cb79-13"><a href="#cb79-13"></a>    <span class="kw">def</span> NoHabla(<span class="va">self</span>):</span>
+<span id="cb79-14"><a href="#cb79-14"></a>        <span class="va">self</span>._hablar <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb79-15"><a href="#cb79-15"></a></span>
+<span id="cb79-16"><a href="#cb79-16"></a>d <span class="op">=</span> Dina()</span>
+<span id="cb79-17"><a href="#cb79-17"></a>d.isEncendido()</span></code></pre></div>
+<div class="output execute_result" data-execution_count="5">
+<pre><code>False</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>En Python 2 toda clase base debe heredar de la clase <em>object</em>. En Python 3 esto no es necesario.</p>
+<p>Podemos ver todas las propiedas y métodos de una clase usando el método <em>dir(objeto)</em>. Muestra los propios y los heredados.</p>
+</div>
+<div class="cell code" data-execution_count="6">
+<div class="sourceCode" id="cb81"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1"></a><span class="bu">print</span>(<span class="bu">dir</span>(d))</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>[&#39;NoHabla&#39;, &#39;__class__&#39;, &#39;__delattr__&#39;, &#39;__dict__&#39;, &#39;__dir__&#39;, &#39;__doc__&#39;, &#39;__eq__&#39;, &#39;__format__&#39;, &#39;__ge__&#39;, &#39;__getattribute__&#39;, &#39;__gt__&#39;, &#39;__hash__&#39;, &#39;__init__&#39;, &#39;__init_subclass__&#39;, &#39;__le__&#39;, &#39;__lt__&#39;, &#39;__module__&#39;, &#39;__ne__&#39;, &#39;__new__&#39;, &#39;__reduce__&#39;, &#39;__reduce_ex__&#39;, &#39;__repr__&#39;, &#39;__setattr__&#39;, &#39;__sizeof__&#39;, &#39;__str__&#39;, &#39;__subclasshook__&#39;, &#39;__weakref__&#39;, &#39;_encendido&#39;, &#39;_hablar&#39;, &#39;encender&#39;, &#39;isEncendido&#39;]
+</code></pre>
+</div>
+</div>
+<section id="constructores" class="cell markdown">
+<h2>Constructores</h2>
+<p>Se define usando:</p>
+</section>
+<div class="cell code">
+<div class="sourceCode" id="cb83"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1"></a><span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb83-2"><a href="#cb83-2"></a>    <span class="co"># Code...</span></span></code></pre></div>
+</div>
+<div class="cell markdown">
+<p><strong>Ejemplo:</strong></p>
+</div>
+<div class="cell code">
+<div class="sourceCode" id="cb84"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1"></a><span class="kw">class</span> Persona:</span>
+<span id="cb84-2"><a href="#cb84-2"></a>    nombre <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb84-3"><a href="#cb84-3"></a>    edad <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb84-4"><a href="#cb84-4"></a>    anno <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb84-5"><a href="#cb84-5"></a></span>
+<span id="cb84-6"><a href="#cb84-6"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, age):</span>
+<span id="cb84-7"><a href="#cb84-7"></a>        <span class="va">self</span>.nombre <span class="op">=</span> name</span>
+<span id="cb84-8"><a href="#cb84-8"></a>        <span class="va">self</span>.edad <span class="op">=</span> age</span>
+<span id="cb84-9"><a href="#cb84-9"></a>        <span class="va">self</span>.anno <span class="op">=</span> <span class="dv">2022</span></span></code></pre></div>
+</div>
+<div class="cell markdown">
+<p>Podemos llamar al constructor de la clase padre con el método especial <em>super()</em>:</p>
+</div>
+<div class="cell code">
+<div class="sourceCode" id="cb85"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1"></a><span class="kw">class</span> Dino:</span>
+<span id="cb85-2"><a href="#cb85-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb85-3"><a href="#cb85-3"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>() <span class="co"># Constructor de la clase padre. Si tiene parámetros se los pasamos en el 2do paréntisis</span></span></code></pre></div>
+</div>
+<section id="destructores" class="cell markdown">
+<h2>Destructores</h2>
+<p>Se ejecutan para limpiar memoria cuando ya no hay más referencias a la clase. En Python no es necesario usarlo pq el mismo compilador va limpiando la memoria.</p>
+</section>
+<div class="cell code">
+<div class="sourceCode" id="cb86"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1"></a><span class="co"># Se coloca la siguiente función dentro de la clase</span></span>
+<span id="cb86-2"><a href="#cb86-2"></a><span class="kw">def</span> <span class="fu">__del__</span>(<span class="va">self</span>):</span>
+<span id="cb86-3"><a href="#cb86-3"></a>    <span class="bu">print</span>(<span class="st">&quot;Estoy en el destructor&quot;</span>)</span>
+<span id="cb86-4"><a href="#cb86-4"></a></span>
+<span id="cb86-5"><a href="#cb86-5"></a><span class="co"># También se puede llamar</span></span>
+<span id="cb86-6"><a href="#cb86-6"></a>d <span class="op">=</span> Dina()</span>
+<span id="cb86-7"><a href="#cb86-7"></a>d.isEncendido()</span>
+<span id="cb86-8"><a href="#cb86-8"></a><span class="kw">del</span>(d) <span class="co"># Destructor</span></span></code></pre></div>
+</div>
+<section id="clases-abtractas" class="cell markdown">
+<h2>Clases abtractas</h2>
+<p>Las clases abtractas solo pueden ser usadas como herencia. No pueden ser instanciadas directamente.</p>
+<p>Se necesitan dos cosas para crearlas</p>
+<ol>
+<li>Importar <em>abstractmethod</em> de la librería <em>abc</em></li>
+<li>colocar el comodín <em>@abstractmethod</em> delante del método</li>
+</ol>
+<p>Después hay que implemantar obligatoriamente los métodos de la clase abstracta dentro de la nueva clase hijo que hereda de la abstracta.</p>
+</section>
+<div class="cell code" data-execution_count="9">
+<div class="sourceCode" id="cb87"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1"></a><span class="im">from</span> abc <span class="im">import</span> ABC, abstractmethod</span>
+<span id="cb87-2"><a href="#cb87-2"></a></span>
+<span id="cb87-3"><a href="#cb87-3"></a><span class="kw">class</span> Animales(ABC):</span>
+<span id="cb87-4"><a href="#cb87-4"></a>    <span class="at">@abstractmethod</span></span>
+<span id="cb87-5"><a href="#cb87-5"></a>    <span class="kw">def</span> Sonido(<span class="va">self</span>):</span>
+<span id="cb87-6"><a href="#cb87-6"></a>        <span class="cf">pass</span></span>
+<span id="cb87-7"><a href="#cb87-7"></a></span>
+<span id="cb87-8"><a href="#cb87-8"></a>    <span class="co"># Método no abstracto</span></span>
+<span id="cb87-9"><a href="#cb87-9"></a>    <span class="kw">def</span> DiHola(<span class="va">self</span>):</span>
+<span id="cb87-10"><a href="#cb87-10"></a>        <span class="bu">print</span>(<span class="st">&quot;Hola&quot;</span>)</span>
+<span id="cb87-11"><a href="#cb87-11"></a></span>
+<span id="cb87-12"><a href="#cb87-12"></a><span class="kw">class</span> Perro(Animales):</span>
+<span id="cb87-13"><a href="#cb87-13"></a>    <span class="kw">def</span> Sonido(<span class="va">self</span>):</span>
+<span id="cb87-14"><a href="#cb87-14"></a>        <span class="bu">print</span>(<span class="st">&quot;Guau&quot;</span>)</span>
+<span id="cb87-15"><a href="#cb87-15"></a></span>
+<span id="cb87-16"><a href="#cb87-16"></a><span class="kw">class</span> Gato(Animales):</span>
+<span id="cb87-17"><a href="#cb87-17"></a>    <span class="kw">def</span> Sonido(<span class="va">self</span>):</span>
+<span id="cb87-18"><a href="#cb87-18"></a>        <span class="bu">print</span>(<span class="st">&quot;Miau&quot;</span>)</span>
+<span id="cb87-19"><a href="#cb87-19"></a></span>
+<span id="cb87-20"><a href="#cb87-20"></a>dog <span class="op">=</span> Perro()</span>
+<span id="cb87-21"><a href="#cb87-21"></a>dog.Sonido()</span>
+<span id="cb87-22"><a href="#cb87-22"></a>dog.DiHola()</span>
+<span id="cb87-23"><a href="#cb87-23"></a></span>
+<span id="cb87-24"><a href="#cb87-24"></a>cat <span class="op">=</span> Gato()</span>
+<span id="cb87-25"><a href="#cb87-25"></a>cat.Sonido()</span>
+<span id="cb87-26"><a href="#cb87-26"></a>cat.DiHola()</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>Guau
+Hola
+Miau
+Hola
+</code></pre>
+</div>
+</div>
+<section id="relaciones-has-a-composición" class="cell markdown">
+<h2>Relaciones "HAS-A" (Composición)</h2>
+<p>Una clase tiene una o más instancias de otras clases y no hereda métodos. Se puede crear una jerarquía de objetos sin usar herencia. Es mucho más elegante y se prefiere.</p>
+</section>
+<div class="cell code" data-execution_count="12">
+<div class="sourceCode" id="cb89"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1"></a><span class="kw">class</span> Motor:</span>
+<span id="cb89-2"><a href="#cb89-2"></a>    tipo <span class="op">=</span> <span class="st">&#39;Diesel&#39;</span></span>
+<span id="cb89-3"><a href="#cb89-3"></a></span>
+<span id="cb89-4"><a href="#cb89-4"></a><span class="kw">class</span> Ventanas:</span>
+<span id="cb89-5"><a href="#cb89-5"></a>    cantidad <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb89-6"><a href="#cb89-6"></a></span>
+<span id="cb89-7"><a href="#cb89-7"></a>    <span class="kw">def</span> CambiarVentanas(<span class="va">self</span>, cantidad):</span>
+<span id="cb89-8"><a href="#cb89-8"></a>        <span class="va">self</span>.cantidad <span class="op">=</span> cantidad</span>
+<span id="cb89-9"><a href="#cb89-9"></a></span>
+<span id="cb89-10"><a href="#cb89-10"></a><span class="kw">class</span> Ruedas:</span>
+<span id="cb89-11"><a href="#cb89-11"></a>    cantidad <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb89-12"><a href="#cb89-12"></a></span>
+<span id="cb89-13"><a href="#cb89-13"></a><span class="kw">class</span> Carroceria:</span>
+<span id="cb89-14"><a href="#cb89-14"></a>    ventanas <span class="op">=</span> Ventanas()</span>
+<span id="cb89-15"><a href="#cb89-15"></a>    ruedas <span class="op">=</span> Ruedas()</span>
+<span id="cb89-16"><a href="#cb89-16"></a></span>
+<span id="cb89-17"><a href="#cb89-17"></a><span class="kw">class</span> Coche:</span>
+<span id="cb89-18"><a href="#cb89-18"></a>    motor <span class="op">=</span> Motor()</span>
+<span id="cb89-19"><a href="#cb89-19"></a>    carroceria <span class="op">=</span> Carroceria()</span>
+<span id="cb89-20"><a href="#cb89-20"></a></span>
+<span id="cb89-21"><a href="#cb89-21"></a></span>
+<span id="cb89-22"><a href="#cb89-22"></a>c <span class="op">=</span> Coche()</span>
+<span id="cb89-23"><a href="#cb89-23"></a><span class="bu">print</span>(<span class="st">&#39;Motor es:&#39;</span>, c.motor.tipo)</span>
+<span id="cb89-24"><a href="#cb89-24"></a>c.carroceria.ventanas.CambiarVentanas(<span class="dv">3</span>)</span>
+<span id="cb89-25"><a href="#cb89-25"></a><span class="bu">print</span>(<span class="st">&#39;Ventanas:&#39;</span>,c.carroceria.ventanas.cantidad)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>Motor es: Diesel
+Ventanas: 3
+</code></pre>
+</div>
+</div>
+<section id="tema-7-módulos-ejecutando-módulos-como-scripts" class="cell markdown">
+<h1>Tema 7. Módulos: ejecutando módulos como scripts</h1>
+</section>
+<section id="qué-es-un-módulo" class="cell markdown">
+<h2>¿Qué es un módulo?</h2>
+</section>
+<div class="cell markdown">
+<p>Un módulo es un fichero en el disco duro que contiene una serie de sentencias y definiciones escritas en Python. Terminan con la extensión .py. Los módulos se llaman igual que el nombre del fichero.</p>
+</div>
+<section id="cómo-saber-el-nombre-de-los-módulos" class="cell markdown">
+<h2>¿Cómo saber el nombre de los módulos?</h2>
+</section>
+<div class="cell code" data-execution_count="2">
+<div class="sourceCode" id="cb91"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1"></a><span class="bu">print</span>(<span class="va">__name__</span>) <span class="co"># Nos muestra el nombre del módulo actual</span></span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>__main__
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Cuando ejecutamos un fichero directamente nos devuelve como nombre de módulo <em>main</em>. Podemos usar esto para crear código más limpio o ejecutar cierta acción si se detecta que se está ejecutando el módulo directamente. Los módulos no deben estar compuestos por códigos en ámbito global.</p>
+</div>
+<div class="cell code">
+<div class="sourceCode" id="cb93"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1"></a><span class="kw">def</span> main():</span>
+<span id="cb93-2"><a href="#cb93-2"></a>    <span class="cf">pass</span></span>
+<span id="cb93-3"><a href="#cb93-3"></a></span>
+<span id="cb93-4"><a href="#cb93-4"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
+<span id="cb93-5"><a href="#cb93-5"></a>    main()</span></code></pre></div>
+</div>
+<section id="importando-módulos" class="cell markdown">
+<h2>Importando módulos</h2>
+</section>
+<div class="cell code">
+<div class="sourceCode" id="cb94"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1"></a><span class="im">import</span> NombreDelModulo <span class="co"># Importando el módulo</span></span>
+<span id="cb94-2"><a href="#cb94-2"></a><span class="im">import</span> NombreDelModulo2 <span class="im">as</span> nm <span class="co"># Acortando nombre de los modulos en el import</span></span>
+<span id="cb94-3"><a href="#cb94-3"></a></span>
+<span id="cb94-4"><a href="#cb94-4"></a>NombreDelModulo.MetodoOParametro</span>
+<span id="cb94-5"><a href="#cb94-5"></a>nm.MetodoOParametro</span></code></pre></div>
+</div>
+<div class="cell markdown">
+<p>Agrgar una rujta personalizada para que busque nuestros módulos:</p>
+</div>
+<div class="cell code">
+<div class="sourceCode" id="cb95"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1"></a><span class="im">import</span> sys</span>
+<span id="cb95-2"><a href="#cb95-2"></a>sys.path.append(<span class="st">&quot;Ruta a carpeta de mis módulos&quot;</span>)</span></code></pre></div>
+</div>
+<section id="package" class="cell markdown">
+<h2>Package</h2>
+</section>
+<div class="cell markdown">
+<p>Los paquetes son directorios con archivos de módulos dentro y un archivo especial vacío <code>__init__.py</code> dentro del directorio.</p>
+</div>
+<div class="cell markdown">
+<p>Se importan igual que los módulo</p>
+</div>
+<div class="cell code">
+<div class="sourceCode" id="cb96"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1"></a><span class="im">import</span> Carpeta.NombreDelMódeulo</span>
+<span id="cb96-2"><a href="#cb96-2"></a></span>
+<span id="cb96-3"><a href="#cb96-3"></a><span class="co"># o</span></span>
+<span id="cb96-4"><a href="#cb96-4"></a></span>
+<span id="cb96-5"><a href="#cb96-5"></a><span class="im">from</span> Carpeta <span class="im">import</span> NombreDelMódulo</span></code></pre></div>
+</div>
+<div class="cell markdown">
+<p>Para usar el asterizco como comodin para importar todo debemos antes definir en archivo <code>__init__.py</code> los módulos que se van a importar.</p>
+</div>
+<div class="cell code">
+<div class="sourceCode" id="cb97"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1"></a><span class="co"># En el __init__.py</span></span>
+<span id="cb97-2"><a href="#cb97-2"></a>__all__ <span class="op">=</span> [<span class="st">&#39;modulo o paquete 1&#39;</span>, <span class="st">&#39;modulo o paquete 2&#39;</span>]</span></code></pre></div>
+</div>
+<section id="ámbitos" class="cell markdown">
+<h2>Ámbitos</h2>
+</section>
+<div class="cell markdown">
+<p>Con las funciones <code>globals()</code> y <code>locals()</code> podemos ver y manipular la tabla de símbolos globales y locales.</p>
+</div>
+<section id="tema-8-entrada-y-salida" class="cell markdown">
+<h1>Tema 8. Entrada y salida</h1>
+</section>
+<section id="formateo-de-cadenas" class="cell markdown">
+<h2>Formateo de cadenas</h2>
+<p>Consiste en mostrar variables dentro de una cadena.</p>
+<h3 id="forma-antigua">Forma antigua</h3>
+<p>Se hacía en versiones anteriores a Python 2.6</p>
+</section>
+<div class="cell code" data-execution_count="1">
+<div class="sourceCode" id="cb98"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1"></a>numero <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb98-2"><a href="#cb98-2"></a>texto <span class="op">=</span> <span class="st">&#39;Palabra&#39;</span></span>
+<span id="cb98-3"><a href="#cb98-3"></a>flotante <span class="op">=</span> <span class="fl">1.2</span></span>
+<span id="cb98-4"><a href="#cb98-4"></a></span>
+<span id="cb98-5"><a href="#cb98-5"></a><span class="bu">print</span>(<span class="st">&quot;El numero es </span><span class="sc">%d</span><span class="st"> y el texto es </span><span class="sc">%s</span><span class="st"> y tiene </span><span class="sc">%f</span><span class="st">&quot;</span> <span class="op">%</span> (numero, texto, flotante))</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>El numero es 5 y el texto es Palabra y tiene 1.200000
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Hay una salvedad cuando no se necesitan los paréntisis y es cuando solo se va usar una variable</p>
+</div>
+<div class="cell code">
+<div class="sourceCode" id="cb100"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1"></a><span class="bu">print</span>(<span class="st">&quot;Valor flotante: </span><span class="sc">%f</span><span class="st">&quot;</span> <span class="op">%</span> flotante)</span></code></pre></div>
+</div>
+<section id="con-la-función-format-hasta-la-versión-36" class="cell markdown">
+<h3>Con la función format() (hasta la versión 3.6)</h3>
+</section>
+<div class="cell markdown">
+<p>format() es un método de las strings. Tiene 3 formas de darle orden:</p>
+</div>
+<div class="cell code" data-execution_count="4">
+<div class="sourceCode" id="cb101"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb101-1"><a href="#cb101-1"></a><span class="co"># En el orden de la funcion</span></span>
+<span id="cb101-2"><a href="#cb101-2"></a><span class="bu">print</span>(<span class="st">&quot;El numero es </span><span class="sc">{}</span><span class="st"> y el texto es </span><span class="sc">{}</span><span class="st"> y tiene </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(numero, texto, flotante))</span>
+<span id="cb101-3"><a href="#cb101-3"></a></span>
+<span id="cb101-4"><a href="#cb101-4"></a><span class="co"># Dando orden personalizado</span></span>
+<span id="cb101-5"><a href="#cb101-5"></a><span class="bu">print</span>(<span class="st">&quot;El numero es </span><span class="sc">{2}</span><span class="st"> y el texto es </span><span class="sc">{0}</span><span class="st"> y tiene </span><span class="sc">{1}</span><span class="st">&quot;</span>.<span class="bu">format</span>(numero, texto, flotante))</span>
+<span id="cb101-6"><a href="#cb101-6"></a></span>
+<span id="cb101-7"><a href="#cb101-7"></a><span class="co"># Con nombres</span></span>
+<span id="cb101-8"><a href="#cb101-8"></a><span class="bu">print</span>(<span class="st">&quot;El numero es </span><span class="sc">{nr}</span><span class="st"> y el texto es </span><span class="sc">{text}</span><span class="st"> y tiene </span><span class="sc">{float}</span><span class="st">&quot;</span>.<span class="bu">format</span>(nr<span class="op">=</span>numero, text<span class="op">=</span>texto, <span class="bu">float</span><span class="op">=</span>flotante))</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>El numero es 5 y el texto es Palabra y tiene 1.2
+El numero es 1.2 y el texto es 5 y tiene Palabra
+El numero es 5 y el texto es Palabra y tiene 1.2
+</code></pre>
+</div>
+</div>
+<section id="cadenas-tipo-f-de-la-versión-36-en-adelante" class="cell markdown">
+<h3>Cadenas tipo f (de la versión 3.6 en adelante)</h3>
+</section>
+<div class="cell code" data-execution_count="5">
+<div class="sourceCode" id="cb103"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1"></a><span class="bu">print</span>(<span class="ss">f&#39;El numero es </span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss"> y el texto es </span><span class="sc">{</span>texto<span class="sc">}</span><span class="ss"> y tiene </span><span class="sc">{</span>flotante<span class="sc">}</span><span class="ss">&#39;</span>)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>El numero es 5 y el texto es Palabra y tiene 1.2
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Lo que está dentro de las llaves es código Python, por lo que podemos modificar las variables dentro de ellas.</p>
+</div>
+<div class="cell code" data-execution_count="10">
+<div class="sourceCode" id="cb105"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1"></a><span class="bu">print</span>(<span class="ss">f&#39;El numero es </span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss"> y el texto es </span><span class="sc">{</span>texto<span class="sc">.</span>upper()<span class="sc">}</span><span class="ss"> y tiene </span><span class="sc">{</span>flotante<span class="sc">}</span><span class="ss">&#39;</span>)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>El numero es 5 y el texto es PALABRA y tiene 1.2
+</code></pre>
+</div>
+</div>
+<section id="funciones-especiales-de-clases-para-salidas-de-info" class="cell markdown">
+<h2>Funciones especiales de clases para salidas de info</h2>
+</section>
+<div class="cell markdown">
+<p>Tenemos la función <em>str()</em> y <em>repr()</em>. Podemos sobrecargar en la clase la función para que nos muestre en el formato que deseemos. Por convención la función <em>str()</em> se utiliza para hacer representaciones informales (entendibles para el usuario) y <em>repr()</em> para representaciones más técnicas, por ejemplo, para depuración.</p>
+</div>
+<div class="cell markdown">
+<p>Todas las clases tienen el método *__str__* que se ejecuta cuando invoco la función <em>str()</em> sobre un objeto. Ej: print(str(objeto)). Esta función se sebreescribe mediante la sobrecarga de funciones.</p>
+</div>
+<div class="cell code" data-execution_count="1">
+<div class="sourceCode" id="cb107"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb107-1"><a href="#cb107-1"></a><span class="kw">class</span> Juguete:</span>
+<span id="cb107-2"><a href="#cb107-2"></a>    nombre <span class="op">=</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb107-3"><a href="#cb107-3"></a>    precio <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb107-4"><a href="#cb107-4"></a></span>
+<span id="cb107-5"><a href="#cb107-5"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, nombre, precio):</span>
+<span id="cb107-6"><a href="#cb107-6"></a>        <span class="va">self</span>.nombre <span class="op">=</span> nombre</span>
+<span id="cb107-7"><a href="#cb107-7"></a>        <span class="va">self</span>.precio <span class="op">=</span> precio</span>
+<span id="cb107-8"><a href="#cb107-8"></a></span>
+<span id="cb107-9"><a href="#cb107-9"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb107-10"><a href="#cb107-10"></a>        <span class="cf">return</span> <span class="ss">f&#39;Soy un </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>nombre<span class="sc">}</span><span class="ss"> y valgo </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>precio<span class="sc">}</span><span class="ss">&#39;</span></span>
+<span id="cb107-11"><a href="#cb107-11"></a></span>
+<span id="cb107-12"><a href="#cb107-12"></a>j1 <span class="op">=</span> Juguete(<span class="st">&#39;Peluche&#39;</span>, <span class="fl">18.50</span>)</span>
+<span id="cb107-13"><a href="#cb107-13"></a><span class="bu">print</span>(<span class="bu">repr</span>(j1))</span>
+<span id="cb107-14"><a href="#cb107-14"></a><span class="bu">print</span>(j1) <span class="co"># Es lo mismo que decir print(str(j1))</span></span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>&lt;__main__.Juguete object at 0x0000027BB8FB0880&gt;
+Soy un Peluche y valgo 18.5
+</code></pre>
+</div>
+</div>
+<section id="mostrar-métodos-de-las-clases" class="cell markdown">
+<h2>Mostrar métodos de las clases</h2>
+</section>
+<div class="cell code" data-execution_count="7">
+<div class="sourceCode" id="cb109"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb109-1"><a href="#cb109-1"></a><span class="co"># Por ejemplo para saber los métodos de las cadenas de texto</span></span>
+<span id="cb109-2"><a href="#cb109-2"></a></span>
+<span id="cb109-3"><a href="#cb109-3"></a><span class="im">import</span> pprint</span>
+<span id="cb109-4"><a href="#cb109-4"></a>pprint.pprint(<span class="bu">dir</span>(<span class="st">&#39;&#39;</span>)) <span class="co"># Las comillas vacías son un string vacío</span></span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>[&#39;__add__&#39;,
+ &#39;__class__&#39;,
+ &#39;__contains__&#39;,
+ &#39;__delattr__&#39;,
+ &#39;__dir__&#39;,
+ &#39;__doc__&#39;,
+ &#39;__eq__&#39;,
+ &#39;__format__&#39;,
+ &#39;__ge__&#39;,
+ &#39;__getattribute__&#39;,
+ &#39;__getitem__&#39;,
+ &#39;__getnewargs__&#39;,
+ &#39;__gt__&#39;,
+ &#39;__hash__&#39;,
+ &#39;__init__&#39;,
+ &#39;__init_subclass__&#39;,
+ &#39;__iter__&#39;,
+ &#39;__le__&#39;,
+ &#39;__len__&#39;,
+ &#39;__lt__&#39;,
+ &#39;__mod__&#39;,
+ &#39;__mul__&#39;,
+ &#39;__ne__&#39;,
+ &#39;__new__&#39;,
+ &#39;__reduce__&#39;,
+ &#39;__reduce_ex__&#39;,
+ &#39;__repr__&#39;,
+ &#39;__rmod__&#39;,
+ &#39;__rmul__&#39;,
+ &#39;__setattr__&#39;,
+ &#39;__sizeof__&#39;,
+ &#39;__str__&#39;,
+ &#39;__subclasshook__&#39;,
+ &#39;capitalize&#39;,
+ &#39;casefold&#39;,
+ &#39;center&#39;,
+ &#39;count&#39;,
+ &#39;encode&#39;,
+ &#39;endswith&#39;,
+ &#39;expandtabs&#39;,
+ &#39;find&#39;,
+ &#39;format&#39;,
+ &#39;format_map&#39;,
+ &#39;index&#39;,
+ &#39;isalnum&#39;,
+ &#39;isalpha&#39;,
+ &#39;isascii&#39;,
+ &#39;isdecimal&#39;,
+ &#39;isdigit&#39;,
+ &#39;isidentifier&#39;,
+ &#39;islower&#39;,
+ &#39;isnumeric&#39;,
+ &#39;isprintable&#39;,
+ &#39;isspace&#39;,
+ &#39;istitle&#39;,
+ &#39;isupper&#39;,
+ &#39;join&#39;,
+ &#39;ljust&#39;,
+ &#39;lower&#39;,
+ &#39;lstrip&#39;,
+ &#39;maketrans&#39;,
+ &#39;partition&#39;,
+ &#39;removeprefix&#39;,
+ &#39;removesuffix&#39;,
+ &#39;replace&#39;,
+ &#39;rfind&#39;,
+ &#39;rindex&#39;,
+ &#39;rjust&#39;,
+ &#39;rpartition&#39;,
+ &#39;rsplit&#39;,
+ &#39;rstrip&#39;,
+ &#39;split&#39;,
+ &#39;splitlines&#39;,
+ &#39;startswith&#39;,
+ &#39;strip&#39;,
+ &#39;swapcase&#39;,
+ &#39;title&#39;,
+ &#39;translate&#39;,
+ &#39;upper&#39;,
+ &#39;zfill&#39;]
+</code></pre>
+</div>
+</div>
+<section id="funciones-de-manipulación-de-ficheros" class="cell markdown">
+<h2>Funciones de manipulación de ficheros</h2>
+</section>
+<section id="leer-ficheros" class="cell markdown">
+<h3>Leer ficheros</h3>
+</section>
+<div class="cell markdown">
+<p>Todo empieza con una llamada a la función <em>open()</em></p>
+<p>Pasos para leer fichero:</p>
+<ol>
+<li>Abrir fichero</li>
+<li>Asignamos lectura a una variable</li>
+<li>Cerramos fichero</li>
+</ol>
+</div>
+<div class="cell code">
+<div class="sourceCode" id="cb111"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb111-1"><a href="#cb111-1"></a><span class="co"># SINTAXIS</span></span>
+<span id="cb111-2"><a href="#cb111-2"></a><span class="co"># f = open(fichero, permiso)</span></span>
+<span id="cb111-3"><a href="#cb111-3"></a><span class="co"># </span></span>
+<span id="cb111-4"><a href="#cb111-4"></a><span class="co"># Permisos:</span></span>
+<span id="cb111-5"><a href="#cb111-5"></a><span class="co"># r: lectura</span></span>
+<span id="cb111-6"><a href="#cb111-6"></a><span class="co"># a: append -&gt; Agrega al final</span></span>
+<span id="cb111-7"><a href="#cb111-7"></a><span class="co"># w: escritura -&gt; Sobre escribe el fichero</span></span>
+<span id="cb111-8"><a href="#cb111-8"></a><span class="co"># x: crear</span></span>
+<span id="cb111-9"><a href="#cb111-9"></a><span class="co">#</span></span>
+<span id="cb111-10"><a href="#cb111-10"></a><span class="co"># Tipos:</span></span>
+<span id="cb111-11"><a href="#cb111-11"></a><span class="co"># t: texto</span></span>
+<span id="cb111-12"><a href="#cb111-12"></a><span class="co"># b: binario</span></span>
+<span id="cb111-13"><a href="#cb111-13"></a><span class="co">#</span></span>
+<span id="cb111-14"><a href="#cb111-14"></a><span class="co"># Caracter especial: +</span></span>
+<span id="cb111-15"><a href="#cb111-15"></a><span class="co"># w+, a+, etc -&gt; Indica abierto para escritura y lectura</span></span>
+<span id="cb111-16"><a href="#cb111-16"></a></span>
+<span id="cb111-17"><a href="#cb111-17"></a>f <span class="op">=</span> <span class="bu">open</span>(<span class="st">&#39;miFichero.txt&#39;</span>, <span class="st">&#39;r&#39;</span>)</span>
+<span id="cb111-18"><a href="#cb111-18"></a>datos <span class="op">=</span> f.read() <span class="co">#Lee todo el fichero</span></span>
+<span id="cb111-19"><a href="#cb111-19"></a>f.close()</span>
+<span id="cb111-20"><a href="#cb111-20"></a></span>
+<span id="cb111-21"><a href="#cb111-21"></a><span class="co"># Si no queremos leer el fichero completo ponemos de parámetro la cantidad de bites a leer</span></span>
+<span id="cb111-22"><a href="#cb111-22"></a>datos <span class="op">=</span> f.read(<span class="dv">18</span>)</span>
+<span id="cb111-23"><a href="#cb111-23"></a></span>
+<span id="cb111-24"><a href="#cb111-24"></a><span class="co"># Leer la primera línea y poner el puntero en la siguiente</span></span>
+<span id="cb111-25"><a href="#cb111-25"></a>datos <span class="op">=</span> f.readline()</span>
+<span id="cb111-26"><a href="#cb111-26"></a></span>
+<span id="cb111-27"><a href="#cb111-27"></a><span class="co"># Lee todas la líneas y la guarda en una lista</span></span>
+<span id="cb111-28"><a href="#cb111-28"></a>datos <span class="op">=</span> f.readlines()</span></code></pre></div>
+</div>
+<section id="escribir-ficheros" class="cell markdown">
+<h3>Escribir ficheros</h3>
+</section>
+<div class="cell markdown">
+<p>Pasos para escribir fichero:</p>
+<ol>
+<li>Abrir fichero</li>
+<li>Escribimos en él</li>
+<li>Cerramos fichero</li>
+</ol>
+</div>
+<div class="cell code">
+<div class="sourceCode" id="cb112"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb112-1"><a href="#cb112-1"></a><span class="co"># Sobreescribimos arriba del fichero</span></span>
+<span id="cb112-2"><a href="#cb112-2"></a>f <span class="op">=</span> <span class="bu">open</span>(<span class="st">&#39;miFichero.txt&#39;</span>, <span class="st">&#39;w&#39;</span>)</span>
+<span id="cb112-3"><a href="#cb112-3"></a>f.write(<span class="st">&#39;texto&#39;</span>) </span>
+<span id="cb112-4"><a href="#cb112-4"></a>f.close()</span>
+<span id="cb112-5"><a href="#cb112-5"></a></span>
+<span id="cb112-6"><a href="#cb112-6"></a><span class="co"># Agregar sin sobreescribir</span></span>
+<span id="cb112-7"><a href="#cb112-7"></a>f <span class="op">=</span> <span class="bu">open</span>(<span class="st">&#39;miFichero.txt&#39;</span>, <span class="st">&#39;a&#39;</span>)</span>
+<span id="cb112-8"><a href="#cb112-8"></a>f.write(<span class="st">&#39;texto&#39;</span>)</span>
+<span id="cb112-9"><a href="#cb112-9"></a>f.close()</span>
+<span id="cb112-10"><a href="#cb112-10"></a></span>
+<span id="cb112-11"><a href="#cb112-11"></a><span class="co"># Escribir una lista en fichero</span></span>
+<span id="cb112-12"><a href="#cb112-12"></a>f <span class="op">=</span> <span class="bu">open</span>(<span class="st">&#39;miFichero.txt&#39;</span>, <span class="st">&#39;a&#39;</span>)</span>
+<span id="cb112-13"><a href="#cb112-13"></a>lista <span class="op">=</span> [</span>
+<span id="cb112-14"><a href="#cb112-14"></a>    <span class="st">&#39;Una linea</span><span class="ch">\n</span><span class="st">&#39;</span>,</span>
+<span id="cb112-15"><a href="#cb112-15"></a>    <span class="st">&#39;dos linea</span><span class="ch">\n</span><span class="st">&#39;</span>,</span>
+<span id="cb112-16"><a href="#cb112-16"></a>    <span class="st">&#39;tres linea</span><span class="ch">\n</span><span class="st">&#39;</span></span>
+<span id="cb112-17"><a href="#cb112-17"></a>]</span>
+<span id="cb112-18"><a href="#cb112-18"></a>f.writelines(lista)</span>
+<span id="cb112-19"><a href="#cb112-19"></a>f.close()</span></code></pre></div>
+</div>
+<section id="serializar-datos" class="cell markdown">
+<h2>Serializar datos</h2>
+</section>
+<div class="cell markdown">
+<p>La serialización de datos consiste en escribir un objeto a disco para después poder reutilizarlo. Podemos hacerlo con el módulo <em>pickle</em> que viene por defecto con python.</p>
+</div>
+<div class="cell markdown">
+<p>Escribir datos a fichero binario:</p>
+</div>
+<div class="cell code" data-execution_count="6">
+<div class="sourceCode" id="cb113"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb113-1"><a href="#cb113-1"></a><span class="im">import</span> pickle</span>
+<span id="cb113-2"><a href="#cb113-2"></a><span class="im">from</span> turtle <span class="im">import</span> color</span>
+<span id="cb113-3"><a href="#cb113-3"></a></span>
+<span id="cb113-4"><a href="#cb113-4"></a><span class="kw">class</span> Juguete:</span>
+<span id="cb113-5"><a href="#cb113-5"></a>    nombre <span class="op">=</span> <span class="st">&#39;&#39;</span></span>
+<span id="cb113-6"><a href="#cb113-6"></a>    precio <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb113-7"><a href="#cb113-7"></a></span>
+<span id="cb113-8"><a href="#cb113-8"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, nombre, precio) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb113-9"><a href="#cb113-9"></a>        <span class="va">self</span>.nombre <span class="op">=</span> nombre</span>
+<span id="cb113-10"><a href="#cb113-10"></a>        <span class="va">self</span>.precio <span class="op">=</span> precio</span>
+<span id="cb113-11"><a href="#cb113-11"></a></span>
+<span id="cb113-12"><a href="#cb113-12"></a>    <span class="kw">def</span> getNombre (<span class="va">self</span>):</span>
+<span id="cb113-13"><a href="#cb113-13"></a>        <span class="cf">return</span> <span class="va">self</span>.nombre</span>
+<span id="cb113-14"><a href="#cb113-14"></a></span>
+<span id="cb113-15"><a href="#cb113-15"></a>j2 <span class="op">=</span> Juguete(<span class="st">&#39;MrPotato&#39;</span>, <span class="fl">10.6</span>)</span>
+<span id="cb113-16"><a href="#cb113-16"></a></span>
+<span id="cb113-17"><a href="#cb113-17"></a>f <span class="op">=</span> <span class="bu">open</span>(<span class="st">&#39;datos.bin&#39;</span>, <span class="st">&#39;wb&#39;</span>) <span class="co"># w para escribir, b porque es en binario</span></span>
+<span id="cb113-18"><a href="#cb113-18"></a>pickle.dump(j2, f) <span class="co"># Parámetros método dump: (que voy a escribir, donde)</span></span>
+<span id="cb113-19"><a href="#cb113-19"></a>f.close()</span></code></pre></div>
+</div>
+<div class="cell markdown">
+<p>Obtener datos de fichero binario:</p>
+</div>
+<div class="cell code" data-execution_count="7">
+<div class="sourceCode" id="cb114"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb114-1"><a href="#cb114-1"></a>f <span class="op">=</span> <span class="bu">open</span>(<span class="st">&#39;datos.bin&#39;</span>, <span class="st">&#39;rb&#39;</span>)</span>
+<span id="cb114-2"><a href="#cb114-2"></a>potato <span class="op">=</span> pickle.load(f)</span>
+<span id="cb114-3"><a href="#cb114-3"></a>f.close()</span></code></pre></div>
+</div>
+<div class="cell code" data-execution_count="8">
+<div class="sourceCode" id="cb115"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb115-1"><a href="#cb115-1"></a>name <span class="op">=</span> potato.getNombre()</span>
+<span id="cb115-2"><a href="#cb115-2"></a><span class="bu">print</span>(name)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>MrPotato
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>La serialización de datos se puede utilizar para guardar el estado de un programa sin tener que utilizar bases de datos.</p>
+</div>
+<section id="tema-9-bibliotecas-y-funciones-built-in" class="cell markdown">
+<h1>Tema 9. Bibliotecas y funciones Built-in</h1>
+</section>
+<div class="cell markdown">
+<p>Las funciones built-in son funciones implementadas a través del intérprete. El compilador las inyecta en tiempo de ejecución para poder usarlas.</p>
+</div>
+<section id="algunos-ejemplos-de-funciones-built-in" class="cell markdown">
+<h2>Algunos ejemplos de funciones Built-in</h2>
+</section>
+<section id="map-filter-reduce" class="cell markdown">
+<h3>map, filter, reduce</h3>
+</section>
+<section id="filter" class="cell markdown">
+<h4>filter()</h4>
+<p>La función <em>filter</em> debe devolver <em>True</em> o <em>False</em>. La función que se utilice dentro de ella debe tener un parámetro de entrada. Cada elemento de la lista se pasa al parámetro de la función y devuelve una lista. Si por la lógica que se implemente el parámetro actual devuelve <em>True</em> entoces se agrega a la lista devuelta.</p>
+</section>
+<div class="cell code" data-execution_count="2">
+<div class="sourceCode" id="cb117"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb117-1"><a href="#cb117-1"></a><span class="co"># SINTAXIS</span></span>
+<span id="cb117-2"><a href="#cb117-2"></a><span class="co"># filter (FUNCION, LISTA)</span></span>
+<span id="cb117-3"><a href="#cb117-3"></a></span>
+<span id="cb117-4"><a href="#cb117-4"></a><span class="co"># Ejemplo para obtener los números pares de una lista</span></span>
+<span id="cb117-5"><a href="#cb117-5"></a>numeros <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>]</span>
+<span id="cb117-6"><a href="#cb117-6"></a></span>
+<span id="cb117-7"><a href="#cb117-7"></a><span class="kw">def</span> miFuncion(x):</span>
+<span id="cb117-8"><a href="#cb117-8"></a>    <span class="cf">if</span> x <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb117-9"><a href="#cb117-9"></a>        <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb117-10"><a href="#cb117-10"></a></span>
+<span id="cb117-11"><a href="#cb117-11"></a>    <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb117-12"><a href="#cb117-12"></a></span>
+<span id="cb117-13"><a href="#cb117-13"></a>resultado <span class="op">=</span> <span class="bu">filter</span>(miFuncion, numeros)</span>
+<span id="cb117-14"><a href="#cb117-14"></a><span class="bu">print</span>(<span class="bu">list</span>(resultado))</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>[2, 4, 6, 8, 10]
+</code></pre>
+</div>
+</div>
+<section id="map" class="cell markdown">
+<h4>map()</h4>
+<p>Aplica una función a todos los elementos de una lista o tupla.</p>
+</section>
+<div class="cell code" data-execution_count="3">
+<div class="sourceCode" id="cb119"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb119-1"><a href="#cb119-1"></a><span class="co"># SINTAXIS</span></span>
+<span id="cb119-2"><a href="#cb119-2"></a><span class="co"># map (FUNCION, LISTA)</span></span>
+<span id="cb119-3"><a href="#cb119-3"></a></span>
+<span id="cb119-4"><a href="#cb119-4"></a><span class="co"># Ejemplo para obtener el cuadrado de los números de una lista</span></span>
+<span id="cb119-5"><a href="#cb119-5"></a>numeros <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]</span>
+<span id="cb119-6"><a href="#cb119-6"></a></span>
+<span id="cb119-7"><a href="#cb119-7"></a><span class="kw">def</span> cuadrado(x):</span>
+<span id="cb119-8"><a href="#cb119-8"></a>    <span class="cf">return</span> x <span class="op">*</span> x</span>
+<span id="cb119-9"><a href="#cb119-9"></a></span>
+<span id="cb119-10"><a href="#cb119-10"></a>resultado <span class="op">=</span> <span class="bu">map</span>(cuadrado, numeros)</span>
+<span id="cb119-11"><a href="#cb119-11"></a><span class="bu">print</span>(<span class="bu">list</span>(resultado))</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>[1, 4, 9, 16]
+</code></pre>
+</div>
+</div>
+<section id="reduce" class="cell markdown">
+<h4>reduce()</h4>
+<p>Ejecuta de forma recursiva una función a una lista hasta que la lista se quede con un único elemento. Para utilizar <em>reduce()</em> hay que hacer un import de <em>functools</em>. Las funciones con <em>reduce()</em> necesitan dos parámetros.</p>
+</section>
+<div class="cell code" data-execution_count="5">
+<div class="sourceCode" id="cb121"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb121-1"><a href="#cb121-1"></a><span class="co"># SINTAXIS</span></span>
+<span id="cb121-2"><a href="#cb121-2"></a><span class="co"># reduce (FUNCION, LISTA)</span></span>
+<span id="cb121-3"><a href="#cb121-3"></a></span>
+<span id="cb121-4"><a href="#cb121-4"></a><span class="co"># Ejemplo para sumar todos los números de una lista</span></span>
+<span id="cb121-5"><a href="#cb121-5"></a><span class="im">from</span> functools <span class="im">import</span> <span class="bu">reduce</span></span>
+<span id="cb121-6"><a href="#cb121-6"></a></span>
+<span id="cb121-7"><a href="#cb121-7"></a>numeros <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
+<span id="cb121-8"><a href="#cb121-8"></a></span>
+<span id="cb121-9"><a href="#cb121-9"></a><span class="kw">def</span> sumar(a, b):</span>
+<span id="cb121-10"><a href="#cb121-10"></a>    <span class="co">#Vamos hacer un print para ver lo que hace reduce()</span></span>
+<span id="cb121-11"><a href="#cb121-11"></a>    <span class="bu">print</span>(<span class="ss">f&#39;a=</span><span class="sc">{a}</span><span class="ss"> b=</span><span class="sc">{b}</span><span class="ss">&#39;</span>)</span>
+<span id="cb121-12"><a href="#cb121-12"></a>    <span class="cf">return</span> a <span class="op">+</span> b</span>
+<span id="cb121-13"><a href="#cb121-13"></a></span>
+<span id="cb121-14"><a href="#cb121-14"></a>resultado <span class="op">=</span> <span class="bu">reduce</span>(sumar, numeros)</span>
+<span id="cb121-15"><a href="#cb121-15"></a><span class="bu">print</span>(resultado)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>a=1 b=2
+a=3 b=3
+a=6 b=4
+a=10 b=5
+15
+</code></pre>
+</div>
+</div>
+<section id="zip" class="cell markdown">
+<h3>zip()</h3>
+<p>Combina iterables (listas y tuplas) y devuelve la combinación en tuplas dentro de una lista.</p>
+</section>
+<div class="cell code" data-execution_count="7">
+<div class="sourceCode" id="cb123"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb123-1"><a href="#cb123-1"></a><span class="co"># SINTAXIS</span></span>
+<span id="cb123-2"><a href="#cb123-2"></a><span class="co"># zip (LISTA, LISTA)</span></span>
+<span id="cb123-3"><a href="#cb123-3"></a></span>
+<span id="cb123-4"><a href="#cb123-4"></a>cursos <span class="op">=</span> [<span class="st">&#39;Java&#39;</span>, <span class="st">&#39;Python&#39;</span>, <span class="st">&#39;Git&#39;</span>]</span>
+<span id="cb123-5"><a href="#cb123-5"></a>notas <span class="op">=</span> [<span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">9</span>]</span>
+<span id="cb123-6"><a href="#cb123-6"></a></span>
+<span id="cb123-7"><a href="#cb123-7"></a>resultado <span class="op">=</span> <span class="bu">zip</span>(cursos, notas)</span>
+<span id="cb123-8"><a href="#cb123-8"></a><span class="bu">print</span>(<span class="bu">list</span>(resultado))</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>[(&#39;Java&#39;, 8), (&#39;Python&#39;, 10), (&#39;Git&#39;, 9)]
+</code></pre>
+</div>
+</div>
+<section id="any" class="cell markdown">
+<h3>any()</h3>
+<p>Verifica si alguna de las condiciones de una lista se cumple.</p>
+</section>
+<div class="cell code" data-execution_count="8">
+<div class="sourceCode" id="cb125"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb125-1"><a href="#cb125-1"></a><span class="co"># SINTAXIS</span></span>
+<span id="cb125-2"><a href="#cb125-2"></a><span class="co"># any (LISTA)</span></span>
+<span id="cb125-3"><a href="#cb125-3"></a></span>
+<span id="cb125-4"><a href="#cb125-4"></a>ListaA <span class="op">=</span> [<span class="dv">1</span> <span class="op">==</span> <span class="dv">1</span>, <span class="dv">2</span> <span class="op">==</span> <span class="dv">2</span>, <span class="dv">3</span> <span class="op">==</span> <span class="dv">4</span>]</span>
+<span id="cb125-5"><a href="#cb125-5"></a>ListaB <span class="op">=</span> [<span class="dv">1</span> <span class="op">==</span> <span class="dv">1</span>, <span class="dv">2</span> <span class="op">==</span> <span class="dv">2</span>, <span class="dv">3</span> <span class="op">==</span> <span class="dv">3</span>]</span>
+<span id="cb125-6"><a href="#cb125-6"></a></span>
+<span id="cb125-7"><a href="#cb125-7"></a><span class="bu">print</span>(<span class="bu">any</span>(ListaA))</span>
+<span id="cb125-8"><a href="#cb125-8"></a><span class="bu">print</span>(<span class="bu">any</span>(ListaB))</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>True
+True
+</code></pre>
+</div>
+</div>
+<section id="all" class="cell markdown">
+<h3>all()</h3>
+<p>Verifica si todas las condiciones de una lista se cumplen.</p>
+</section>
+<div class="cell code" data-execution_count="9">
+<div class="sourceCode" id="cb127"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb127-1"><a href="#cb127-1"></a><span class="co"># SINTAXIS</span></span>
+<span id="cb127-2"><a href="#cb127-2"></a><span class="co"># all (LISTA)</span></span>
+<span id="cb127-3"><a href="#cb127-3"></a></span>
+<span id="cb127-4"><a href="#cb127-4"></a>ListaA <span class="op">=</span> [<span class="dv">1</span> <span class="op">==</span> <span class="dv">1</span>, <span class="dv">2</span> <span class="op">==</span> <span class="dv">2</span>, <span class="dv">3</span> <span class="op">==</span> <span class="dv">4</span>]</span>
+<span id="cb127-5"><a href="#cb127-5"></a>ListaB <span class="op">=</span> [<span class="dv">1</span> <span class="op">==</span> <span class="dv">1</span>, <span class="dv">2</span> <span class="op">==</span> <span class="dv">2</span>, <span class="dv">3</span> <span class="op">==</span> <span class="dv">3</span>]</span>
+<span id="cb127-6"><a href="#cb127-6"></a></span>
+<span id="cb127-7"><a href="#cb127-7"></a><span class="bu">print</span>(<span class="bu">all</span>(ListaA))</span>
+<span id="cb127-8"><a href="#cb127-8"></a><span class="bu">print</span>(<span class="bu">all</span>(ListaB))</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>False
+True
+</code></pre>
+</div>
+</div>
+<section id="round" class="cell markdown">
+<h3>round()</h3>
+<p>Sirve para redondear a valores enteros según el decimal.</p>
+</section>
+<div class="cell code" data-execution_count="10">
+<div class="sourceCode" id="cb129"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb129-1"><a href="#cb129-1"></a>a <span class="op">=</span> <span class="fl">6.4</span></span>
+<span id="cb129-2"><a href="#cb129-2"></a>b <span class="op">=</span> <span class="fl">3.5</span></span>
+<span id="cb129-3"><a href="#cb129-3"></a>c <span class="op">=</span> <span class="fl">8.9</span></span>
+<span id="cb129-4"><a href="#cb129-4"></a></span>
+<span id="cb129-5"><a href="#cb129-5"></a><span class="bu">print</span>(<span class="bu">round</span>(a))</span>
+<span id="cb129-6"><a href="#cb129-6"></a><span class="bu">print</span>(<span class="bu">round</span>(b))</span>
+<span id="cb129-7"><a href="#cb129-7"></a><span class="bu">print</span>(<span class="bu">round</span>(c))</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>6
+4
+9
+</code></pre>
+</div>
+</div>
+<section id="min" class="cell markdown">
+<h3>min()</h3>
+<p>Devuelve el mínimo de una lista.</p>
+</section>
+<div class="cell code" data-execution_count="11">
+<div class="sourceCode" id="cb131"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb131-1"><a href="#cb131-1"></a>nros <span class="op">=</span> [<span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">2</span>]</span>
+<span id="cb131-2"><a href="#cb131-2"></a><span class="bu">print</span>(<span class="bu">min</span>(nros))</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>2
+</code></pre>
+</div>
+</div>
+<section id="sorted" class="cell markdown">
+<h3>sorted()</h3>
+<p>Ordena listas o tuplas.</p>
+</section>
+<div class="cell code" data-execution_count="13">
+<div class="sourceCode" id="cb133"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb133-1"><a href="#cb133-1"></a>lista <span class="op">=</span> [<span class="st">&#39;c&#39;</span>, <span class="st">&#39;z&#39;</span>, <span class="st">&#39;a&#39;</span>]</span>
+<span id="cb133-2"><a href="#cb133-2"></a></span>
+<span id="cb133-3"><a href="#cb133-3"></a>ordenada <span class="op">=</span> <span class="bu">sorted</span>(lista)</span>
+<span id="cb133-4"><a href="#cb133-4"></a>reversa <span class="op">=</span> <span class="bu">sorted</span>(lista, reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb133-5"><a href="#cb133-5"></a></span>
+<span id="cb133-6"><a href="#cb133-6"></a><span class="bu">print</span>(ordenada)</span>
+<span id="cb133-7"><a href="#cb133-7"></a><span class="bu">print</span>(reversa)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>[&#39;a&#39;, &#39;c&#39;, &#39;z&#39;]
+[&#39;z&#39;, &#39;c&#39;, &#39;a&#39;]
+</code></pre>
+</div>
+</div>
+<section id="input" class="cell markdown">
+<h3>input()</h3>
+<p>Permite obtener una entrada de datos por parte del usuario.</p>
+</section>
+<div class="cell code" data-execution_count="14">
+<div class="sourceCode" id="cb135"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb135-1"><a href="#cb135-1"></a>a <span class="op">=</span> <span class="bu">input</span>(<span class="st">&#39;Nombre: &#39;</span>)</span>
+<span id="cb135-2"><a href="#cb135-2"></a><span class="bu">print</span>(<span class="ss">f&#39;Hola </span><span class="sc">{a}</span><span class="ss">&#39;</span>)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>Hola Carlos
+</code></pre>
+</div>
+</div>
+<section id="getpass" class="cell markdown">
+<h3>getpass()</h3>
+<p>Evita el uso de <em>input()</em> para información sensible. Con <em>getpass()</em> no se muestra lo que el usuario escribe en la consola para mayor seguridad y privacidad.</p>
+</section>
+<div class="cell code">
+<div class="sourceCode" id="cb137"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb137-1"><a href="#cb137-1"></a><span class="im">from</span> getpass <span class="im">import</span> getpass</span>
+<span id="cb137-2"><a href="#cb137-2"></a></span>
+<span id="cb137-3"><a href="#cb137-3"></a>user <span class="op">=</span> <span class="bu">input</span>(<span class="st">&#39;usuario: &#39;</span>)</span>
+<span id="cb137-4"><a href="#cb137-4"></a>passwd <span class="op">=</span> getpass(<span class="st">&#39;password: &#39;</span>)</span></code></pre></div>
+</div>
+<section id="tema-10-interfaz-de-usuario" class="cell markdown">
+<h1>Tema 10. Interfaz de usuario</h1>
+</section>
+<div class="cell code" data-execution_count="1">
+<div class="sourceCode" id="cb138"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb138-1"><a href="#cb138-1"></a><span class="co"># mostrar ventana básica</span></span>
+<span id="cb138-2"><a href="#cb138-2"></a><span class="im">import</span> tkinter</span>
+<span id="cb138-3"><a href="#cb138-3"></a></span>
+<span id="cb138-4"><a href="#cb138-4"></a>window <span class="op">=</span> tkinter.Tk()</span>
+<span id="cb138-5"><a href="#cb138-5"></a></span>
+<span id="cb138-6"><a href="#cb138-6"></a><span class="co">#... código del GUI</span></span>
+<span id="cb138-7"><a href="#cb138-7"></a></span>
+<span id="cb138-8"><a href="#cb138-8"></a>window.mainloop()</span></code></pre></div>
+</div>
+<section id="geometrías" class="cell markdown">
+<h2>Geometrías</h2>
+<p>Existen tres geoometrías para colocar los elementos: pack(), grid() y place(). Antes hay que crear los widgets que se van a colocar.</p>
+</section>
+<section id="geometría-pack" class="cell markdown">
+<h3>Geometría pack()</h3>
+<p>La gemetría <em>pack()</em> se utiliza habitualmente cuando queremos colocar elementos de arriba a bajo o de izquierda a derecha.</p>
+</section>
+<div class="cell code" data-execution_count="2">
+<div class="sourceCode" id="cb139"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb139-1"><a href="#cb139-1"></a>window <span class="op">=</span> tkinter.Tk()</span>
+<span id="cb139-2"><a href="#cb139-2"></a></span>
+<span id="cb139-3"><a href="#cb139-3"></a>label_hola <span class="op">=</span> tkinter.Label(window, text<span class="op">=</span> <span class="st">&#39;Hola&#39;</span>)</span>
+<span id="cb139-4"><a href="#cb139-4"></a>label_hola.pack()</span>
+<span id="cb139-5"><a href="#cb139-5"></a></span>
+<span id="cb139-6"><a href="#cb139-6"></a>window.mainloop()</span></code></pre></div>
+</div>
+<div class="cell markdown">
+<p>Con varios parámetros:</p>
+</div>
+<div class="cell code" data-execution_count="6">
+<div class="sourceCode" id="cb140"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb140-1"><a href="#cb140-1"></a>window <span class="op">=</span> tkinter.Tk()</span>
+<span id="cb140-2"><a href="#cb140-2"></a></span>
+<span id="cb140-3"><a href="#cb140-3"></a>label_hola <span class="op">=</span> tkinter.Label(window, text<span class="op">=</span> <span class="st">&#39;Hola&#39;</span>, bg<span class="op">=</span><span class="st">&#39;yellow&#39;</span>, fg<span class="op">=</span><span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb140-4"><a href="#cb140-4"></a>label_hola.pack(side<span class="op">=</span><span class="st">&#39;left&#39;</span>, fill<span class="op">=</span><span class="st">&#39;both&#39;</span>, expand<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb140-5"><a href="#cb140-5"></a></span>
+<span id="cb140-6"><a href="#cb140-6"></a>label_adios <span class="op">=</span> tkinter.Label(window, text<span class="op">=</span> <span class="st">&#39;adios&#39;</span>, bg<span class="op">=</span><span class="st">&#39;blue&#39;</span>, fg<span class="op">=</span><span class="st">&#39;white&#39;</span>)</span>
+<span id="cb140-7"><a href="#cb140-7"></a>label_adios.pack(side<span class="op">=</span><span class="st">&#39;right&#39;</span>, fill<span class="op">=</span><span class="st">&#39;both&#39;</span>, expand<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb140-8"><a href="#cb140-8"></a></span>
+<span id="cb140-9"><a href="#cb140-9"></a></span>
+<span id="cb140-10"><a href="#cb140-10"></a>window.mainloop()</span></code></pre></div>
+</div>
+<section id="geometría-grid" class="cell markdown">
+<h3>Geometría grid()</h3>
+<p>Sirve para posicionar a través de columnas y filas</p>
+</section>
+<div class="cell code" data-execution_count="16">
+<div class="sourceCode" id="cb141"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb141-1"><a href="#cb141-1"></a><span class="im">import</span> tkinter</span>
+<span id="cb141-2"><a href="#cb141-2"></a><span class="im">from</span> tkinter <span class="im">import</span> E, W, ttk</span>
+<span id="cb141-3"><a href="#cb141-3"></a></span>
+<span id="cb141-4"><a href="#cb141-4"></a>window <span class="op">=</span> tkinter.Tk()</span>
+<span id="cb141-5"><a href="#cb141-5"></a></span>
+<span id="cb141-6"><a href="#cb141-6"></a><span class="co"># Formato de las columnas</span></span>
+<span id="cb141-7"><a href="#cb141-7"></a><span class="co"># (0,0)  (1,0)  (2,0)</span></span>
+<span id="cb141-8"><a href="#cb141-8"></a><span class="co"># (0,1)  (1,1)  (2,1)</span></span>
+<span id="cb141-9"><a href="#cb141-9"></a></span>
+<span id="cb141-10"><a href="#cb141-10"></a><span class="co"># Cofiguramos las columnas (en mi experiencia es opcional)</span></span>
+<span id="cb141-11"><a href="#cb141-11"></a>window.columnconfigure(<span class="dv">0</span>, weight<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb141-12"><a href="#cb141-12"></a>window.columnconfigure(<span class="dv">1</span>, weight<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb141-13"><a href="#cb141-13"></a></span>
+<span id="cb141-14"><a href="#cb141-14"></a><span class="co"># Usuario</span></span>
+<span id="cb141-15"><a href="#cb141-15"></a><span class="co">## Etiqueta usuario</span></span>
+<span id="cb141-16"><a href="#cb141-16"></a>lblUserName <span class="op">=</span> ttk.Label(window, text<span class="op">=</span><span class="st">&#39;username&#39;</span>)</span>
+<span id="cb141-17"><a href="#cb141-17"></a>lblUserName.grid(column<span class="op">=</span><span class="dv">0</span>, row<span class="op">=</span> <span class="dv">0</span>, sticky<span class="op">=</span>W, padx<span class="op">=</span><span class="dv">10</span>, pady<span class="op">=</span><span class="dv">10</span>) <span class="co"># Sticky fija según rosa naútica N S E W y NE SW etc...</span></span>
+<span id="cb141-18"><a href="#cb141-18"></a></span>
+<span id="cb141-19"><a href="#cb141-19"></a><span class="co">## Input usuario</span></span>
+<span id="cb141-20"><a href="#cb141-20"></a>entryUsername <span class="op">=</span> ttk.Entry(window)</span>
+<span id="cb141-21"><a href="#cb141-21"></a>entryUsername.grid(column<span class="op">=</span><span class="dv">1</span>, row<span class="op">=</span> <span class="dv">0</span>, sticky<span class="op">=</span>E, padx<span class="op">=</span><span class="dv">10</span>, pady<span class="op">=</span><span class="dv">10</span>) <span class="co"># padx...y es lo que seria el margen exterior en css</span></span>
+<span id="cb141-22"><a href="#cb141-22"></a></span>
+<span id="cb141-23"><a href="#cb141-23"></a><span class="co"># Password</span></span>
+<span id="cb141-24"><a href="#cb141-24"></a><span class="co">## Etiqueta password</span></span>
+<span id="cb141-25"><a href="#cb141-25"></a>lblPassW <span class="op">=</span> ttk.Label(window, text<span class="op">=</span><span class="st">&#39;password&#39;</span>)</span>
+<span id="cb141-26"><a href="#cb141-26"></a>lblPassW.grid(column<span class="op">=</span><span class="dv">0</span>, row<span class="op">=</span> <span class="dv">1</span>, sticky<span class="op">=</span>W, padx<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb141-27"><a href="#cb141-27"></a></span>
+<span id="cb141-28"><a href="#cb141-28"></a><span class="co">## Input password</span></span>
+<span id="cb141-29"><a href="#cb141-29"></a>entryPassW <span class="op">=</span> ttk.Entry(window, show<span class="op">=</span><span class="st">&#39;*&#39;</span>)</span>
+<span id="cb141-30"><a href="#cb141-30"></a>entryPassW.grid(column<span class="op">=</span><span class="dv">1</span>, row<span class="op">=</span> <span class="dv">1</span>, sticky<span class="op">=</span>E, padx<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb141-31"><a href="#cb141-31"></a></span>
+<span id="cb141-32"><a href="#cb141-32"></a><span class="co"># Boton</span></span>
+<span id="cb141-33"><a href="#cb141-33"></a>btnLogin <span class="op">=</span> ttk.Button(window, text<span class="op">=</span><span class="st">&#39;Login&#39;</span>)</span>
+<span id="cb141-34"><a href="#cb141-34"></a>btnLogin.grid(column<span class="op">=</span><span class="dv">1</span>, row<span class="op">=</span> <span class="dv">3</span>, sticky<span class="op">=</span>E, padx<span class="op">=</span><span class="dv">10</span>, pady<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb141-35"><a href="#cb141-35"></a></span>
+<span id="cb141-36"><a href="#cb141-36"></a>window.mainloop()</span></code></pre></div>
+</div>
+<section id="geometría-place" class="cell markdown">
+<h3>Geometría place()</h3>
+<p>Sirve para posicionar de forma absoluta o relativa a otro elemento en nuestra ventana</p>
+</section>
+<div class="cell code" data-execution_count="31">
+<div class="sourceCode" id="cb142"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb142-1"><a href="#cb142-1"></a><span class="im">import</span> tkinter</span>
+<span id="cb142-2"><a href="#cb142-2"></a><span class="im">from</span> tkinter <span class="im">import</span> ttk</span>
+<span id="cb142-3"><a href="#cb142-3"></a></span>
+<span id="cb142-4"><a href="#cb142-4"></a>window <span class="op">=</span> tkinter.Tk()</span>
+<span id="cb142-5"><a href="#cb142-5"></a></span>
+<span id="cb142-6"><a href="#cb142-6"></a>label1 <span class="op">=</span> tkinter.Label(window, text<span class="op">=</span><span class="st">&#39;Posicionamiento absoluto&#39;</span>)</span>
+<span id="cb142-7"><a href="#cb142-7"></a>label1.place(x<span class="op">=</span><span class="dv">30</span>, y<span class="op">=</span><span class="dv">40</span>)</span>
+<span id="cb142-8"><a href="#cb142-8"></a></span>
+<span id="cb142-9"><a href="#cb142-9"></a></span>
+<span id="cb142-10"><a href="#cb142-10"></a>window.mainloop()</span></code></pre></div>
+</div>
+<section id="eventos" class="cell markdown">
+<h3>Eventos</h3>
+<p>Los eventos necesitan un <em>callback</em>. Un <em>callback</em> es simplemente una función que recibe un parámetro. Hay que hacer un <em>binding</em> o sea unir un evento a una acción.</p>
+</section>
+<div class="cell code">
+<div class="sourceCode" id="cb143"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb143-1"><a href="#cb143-1"></a><span class="im">import</span> tkinter</span>
+<span id="cb143-2"><a href="#cb143-2"></a><span class="im">from</span> tkinter <span class="im">import</span> ttk</span>
+<span id="cb143-3"><a href="#cb143-3"></a></span>
+<span id="cb143-4"><a href="#cb143-4"></a>window <span class="op">=</span> tkinter.Tk()</span>
+<span id="cb143-5"><a href="#cb143-5"></a></span>
+<span id="cb143-6"><a href="#cb143-6"></a>label1 <span class="op">=</span> tkinter.Label(window, text<span class="op">=</span><span class="st">&#39;Da doble click&#39;</span>)</span>
+<span id="cb143-7"><a href="#cb143-7"></a>label1.pack()</span>
+<span id="cb143-8"><a href="#cb143-8"></a></span>
+<span id="cb143-9"><a href="#cb143-9"></a>label2 <span class="op">=</span> tkinter.Label(window, text<span class="op">=</span><span class="st">&#39;Click derecho&#39;</span>)</span>
+<span id="cb143-10"><a href="#cb143-10"></a>label2.pack()</span>
+<span id="cb143-11"><a href="#cb143-11"></a></span>
+<span id="cb143-12"><a href="#cb143-12"></a>btnClick <span class="op">=</span> tkinter.Button(window, text<span class="op">=</span><span class="st">&#39;Haz click&#39;</span>)</span>
+<span id="cb143-13"><a href="#cb143-13"></a>btnClick.pack()</span>
+<span id="cb143-14"><a href="#cb143-14"></a></span>
+<span id="cb143-15"><a href="#cb143-15"></a><span class="kw">def</span> clicked (event):</span>
+<span id="cb143-16"><a href="#cb143-16"></a>    <span class="bu">print</span>(<span class="st">&#39;Dio click&#39;</span>)</span>
+<span id="cb143-17"><a href="#cb143-17"></a></span>
+<span id="cb143-18"><a href="#cb143-18"></a><span class="kw">def</span> dobleClick (event):</span>
+<span id="cb143-19"><a href="#cb143-19"></a>    <span class="bu">print</span>(<span class="st">&#39;Dio doble click&#39;</span>)</span>
+<span id="cb143-20"><a href="#cb143-20"></a></span>
+<span id="cb143-21"><a href="#cb143-21"></a><span class="kw">def</span> rightClick (event):</span>
+<span id="cb143-22"><a href="#cb143-22"></a>    <span class="bu">print</span>(<span class="st">&#39;Dio click derecho&#39;</span>)</span>
+<span id="cb143-23"><a href="#cb143-23"></a></span>
+<span id="cb143-24"><a href="#cb143-24"></a></span>
+<span id="cb143-25"><a href="#cb143-25"></a><span class="co"># SINATXIS BINDDING</span></span>
+<span id="cb143-26"><a href="#cb143-26"></a><span class="co"># bind(NOMBRE DEL EVENTO, CALLBACK)</span></span>
+<span id="cb143-27"><a href="#cb143-27"></a></span>
+<span id="cb143-28"><a href="#cb143-28"></a>btnClick.bind(<span class="st">&#39;&lt;Button-1&gt;&#39;</span>, clicked)</span>
+<span id="cb143-29"><a href="#cb143-29"></a></span>
+<span id="cb143-30"><a href="#cb143-30"></a><span class="co"># Otros ejemplos de eventos</span></span>
+<span id="cb143-31"><a href="#cb143-31"></a></span>
+<span id="cb143-32"><a href="#cb143-32"></a>label1.bind(<span class="st">&#39;&lt;Double-1&gt;&#39;</span>, dobleClick)</span>
+<span id="cb143-33"><a href="#cb143-33"></a></span>
+<span id="cb143-34"><a href="#cb143-34"></a>label2.bind(<span class="st">&#39;&lt;Button-3&gt;&#39;</span>, rightClick)</span>
+<span id="cb143-35"><a href="#cb143-35"></a></span>
+<span id="cb143-36"><a href="#cb143-36"></a></span>
+<span id="cb143-37"><a href="#cb143-37"></a>window.mainloop()</span></code></pre></div>
+</div>
+<section id="tipos-de-diálogos" class="cell markdown">
+<h3>Tipos de diálogos</h3>
+<p>Hay varios tipos de diálagos. La más usada es la ventana principal pero existen varios más. Por ejemplo <em>filedialog</em> y <em>colorchooser</em>.</p>
+</section>
+<div class="cell code">
+<div class="sourceCode" id="cb144"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb144-1"><a href="#cb144-1"></a><span class="im">import</span> tkinter</span>
+<span id="cb144-2"><a href="#cb144-2"></a><span class="im">from</span> tkinter <span class="im">import</span> filedialog</span>
+<span id="cb144-3"><a href="#cb144-3"></a><span class="im">from</span> tkinter <span class="im">import</span> colorchooser</span>
+<span id="cb144-4"><a href="#cb144-4"></a></span>
+<span id="cb144-5"><a href="#cb144-5"></a>window <span class="op">=</span> tkinter.Tk()</span>
+<span id="cb144-6"><a href="#cb144-6"></a></span>
+<span id="cb144-7"><a href="#cb144-7"></a><span class="kw">def</span> abrirArchivo ():</span>
+<span id="cb144-8"><a href="#cb144-8"></a>    filename <span class="op">=</span> filedialog.askopenfilename()</span>
+<span id="cb144-9"><a href="#cb144-9"></a>    <span class="bu">print</span>(filename)</span>
+<span id="cb144-10"><a href="#cb144-10"></a></span>
+<span id="cb144-11"><a href="#cb144-11"></a><span class="kw">def</span> elegirColor ():</span>
+<span id="cb144-12"><a href="#cb144-12"></a>    chooseColor <span class="op">=</span> colorchooser.askcolor(initialcolor<span class="op">=</span><span class="st">&#39;#ffffff&#39;</span>)</span>
+<span id="cb144-13"><a href="#cb144-13"></a>    <span class="bu">print</span>(chooseColor)</span>
+<span id="cb144-14"><a href="#cb144-14"></a></span>
+<span id="cb144-15"><a href="#cb144-15"></a>btnClick <span class="op">=</span> tkinter.Button(window, text<span class="op">=</span><span class="st">&#39;Abrir archivo&#39;</span>, command<span class="op">=</span>abrirArchivo)</span>
+<span id="cb144-16"><a href="#cb144-16"></a>btnClick.pack()</span>
+<span id="cb144-17"><a href="#cb144-17"></a></span>
+<span id="cb144-18"><a href="#cb144-18"></a>btnClick2 <span class="op">=</span> tkinter.Button(window, text<span class="op">=</span><span class="st">&#39;Elegir color&#39;</span>, command<span class="op">=</span>elegirColor)</span>
+<span id="cb144-19"><a href="#cb144-19"></a>btnClick2.pack()</span>
+<span id="cb144-20"><a href="#cb144-20"></a></span>
+<span id="cb144-21"><a href="#cb144-21"></a>window.mainloop()</span></code></pre></div>
+</div>
+<section id="tema-11-bases-de-datos" class="cell markdown">
+<h1>Tema 11. Bases de datos</h1>
+</section>
+<div class="cell markdown">
+<p>Una base de datos es un almacén. Tienen tablas realacionadas entre sí.</p>
+<p>Con las bases de datos hay que cerrar la conexión al terminar de manipular el archivo.</p>
+<p>Para enviar comandos a las bases de datos usamos los <em>cursores</em>. Si tiene multiples datos eL <em>cursor</em> itera los datos que contiene. No es necesario cerrar el <em>cursor</em> pero es una buena práctica</p>
+</div>
+<div class="cell code" data-execution_count="4">
+<div class="sourceCode" id="cb145"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb145-1"><a href="#cb145-1"></a><span class="im">import</span> sqlite3</span>
+<span id="cb145-2"><a href="#cb145-2"></a></span>
+<span id="cb145-3"><a href="#cb145-3"></a><span class="co"># Paso 1 - Conectando a la base de datos</span></span>
+<span id="cb145-4"><a href="#cb145-4"></a>conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">&quot;./PruebasDB.db&quot;</span>)</span>
+<span id="cb145-5"><a href="#cb145-5"></a><span class="co"># Paso 2 - Creamos el cursor</span></span>
+<span id="cb145-6"><a href="#cb145-6"></a>c <span class="op">=</span> conn.cursor()</span>
+<span id="cb145-7"><a href="#cb145-7"></a></span>
+<span id="cb145-8"><a href="#cb145-8"></a><span class="co"># Paso 3 - Realizamos la Query y mostramos los registros</span></span>
+<span id="cb145-9"><a href="#cb145-9"></a>rows <span class="op">=</span> c.execute(<span class="st">&quot;SELECT * FROM Persona&quot;</span>)</span>
+<span id="cb145-10"><a href="#cb145-10"></a><span class="cf">for</span> row <span class="kw">in</span> rows:</span>
+<span id="cb145-11"><a href="#cb145-11"></a>    <span class="bu">print</span>(row)</span>
+<span id="cb145-12"><a href="#cb145-12"></a></span>
+<span id="cb145-13"><a href="#cb145-13"></a><span class="co"># Paso 4a - No es necesario pero es una buena práctica cerrar el cursor</span></span>
+<span id="cb145-14"><a href="#cb145-14"></a>c.close()</span>
+<span id="cb145-15"><a href="#cb145-15"></a><span class="co"># Paso 4b - Cerrando la conexión</span></span>
+<span id="cb145-16"><a href="#cb145-16"></a>conn.close()</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>(1, &#39;Ranset&#39;, &#39;Fleites&#39;, &#39;22222&#39;)
+(2, &#39;Carlos&#39;, &#39;Ace&#39;, &#39;11111&#39;)
+(3, &#39;MyName&#39;, &#39;My2ndName&#39;, &#39;5555&#39;)
+</code></pre>
+</div>
+</div>
+<div class="cell markdown">
+<p>Cuando hacemos operaciones que modifican la base de datos, por ejemplo, DELETE o INSERT, debemos realizar un <em>commit()</em> para que se ejecute.</p>
+</div>
+<div class="cell code">
+<div class="sourceCode" id="cb147"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb147-1"><a href="#cb147-1"></a><span class="co"># Ejemplo de un insert</span></span>
+<span id="cb147-2"><a href="#cb147-2"></a></span>
+<span id="cb147-3"><a href="#cb147-3"></a>conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">&quot;name.db&quot;</span>)</span>
+<span id="cb147-4"><a href="#cb147-4"></a></span>
+<span id="cb147-5"><a href="#cb147-5"></a>c <span class="op">=</span> conn.cursor()</span>
+<span id="cb147-6"><a href="#cb147-6"></a>c.execute(<span class="st">&quot;INSERT INTO table (column) VALUES (&#39;value&#39;)&quot;</span>)</span>
+<span id="cb147-7"><a href="#cb147-7"></a>conn.commit()</span>
+<span id="cb147-8"><a href="#cb147-8"></a></span>
+<span id="cb147-9"><a href="#cb147-9"></a>c.close()</span>
+<span id="cb147-10"><a href="#cb147-10"></a>conn.close()</span></code></pre></div>
+</div>
+<section id="tema-12-introducción-a-django" class="cell markdown">
+<h1>Tema 12 Introducción a Django</h1>
+<p>Django trabaja con el patrón MTV (Model, Template, View).</p>
+</section>
+<section id="crear-proyecto-django" class="cell markdown">
+<h2>Crear proyecto Django</h2>
+<p>Abrimos una ventana de comando en la carpeta donde queremos crear el proyecto y le pasamos el siguiente comando:</p>
+<p><code>django-admin startproject nombredemiproyecto .</code></p>
+<p>Le ponemos un punto al final para que no cree una subcarpeta y lo ponga en la misma carpeta donde estamos.</p>
+</section>
+<div class="cell markdown">
+<p>En Django existen proyectos y aplicaciones. Un proyecto puede estar compuesto y adiministra una o varias aplicaciones. Por ejemplo, si tenemos una tienda online tenemos que tener una aplicación de carrito de compra, otra aplicación de productos, otra aplicación de usuarios, etc...</p>
+</div>
+<div class="cell markdown">
+<p>Para chequear que se instalado bien el proyecto, en la carpeta de instalación ejecutamos:</p>
+<p><code>python3  manage.py runserver</code></p>
+</div>
+<section id="crear-aplicación" class="cell markdown">
+<h2>Crear Aplicación</h2>
+<p>En la carpeta del proyecto le pasamos el siguiente comando:</p>
+<p><code>python3  manage.py startapp nombreDeLaAplicacion</code></p>
+</section>
+<section id="conectando-la-aplicación-con-el-proyecto-principal" class="cell markdown">
+<h2>Conectando la aplicación con el proyecto principal</h2>
+<p>Debemos abrir el <em>settings.py</em> del módulo del proyecto y buscar la lista <code>INSTALLED_APPS</code> donde agregamos la aplicación. Por ejemplo para agregar una aplicación llamada "catalog" quedaría así:</p>
+</section>
+<div class="cell code">
+<div class="sourceCode" id="cb148"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb148-1"><a href="#cb148-1"></a>INSTALLED_APPS <span class="op">=</span> [</span>
+<span id="cb148-2"><a href="#cb148-2"></a>    <span class="st">&#39;django.contrib.admin&#39;</span>,</span>
+<span id="cb148-3"><a href="#cb148-3"></a>    <span class="st">&#39;django.contrib.auth&#39;</span>,</span>
+<span id="cb148-4"><a href="#cb148-4"></a>    <span class="st">&#39;django.contrib.contenttypes&#39;</span>,</span>
+<span id="cb148-5"><a href="#cb148-5"></a>    <span class="st">&#39;django.contrib.sessions&#39;</span>,</span>
+<span id="cb148-6"><a href="#cb148-6"></a>    <span class="st">&#39;django.contrib.messages&#39;</span>,</span>
+<span id="cb148-7"><a href="#cb148-7"></a>    <span class="st">&#39;django.contrib.staticfiles&#39;</span>,</span>
+<span id="cb148-8"><a href="#cb148-8"></a>    <span class="st">&#39;catalog.apps.CatalogConfig&#39;</span>, <span class="co"># Aplicación agregada</span></span>
+<span id="cb148-9"><a href="#cb148-9"></a>]</span></code></pre></div>
+</div>
+<section id="conectando-vistas-rutas" class="cell markdown">
+<h2>Conectando vistas (Rutas)</h2>
+<p>Debemos abrir el <em>urls.py</em> del módulo del proyecto y buscar la lista <code>urlpatterns</code> donde agregamos la declaración de ruta. Por ejemplo para agregar una vista donde todo lo que tenga en la dirección \catalog vaya a mi aplicación "catalog":</p>
+</section>
+<div class="cell code">
+<div class="sourceCode" id="cb149"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb149-1"><a href="#cb149-1"></a><span class="co"># Archivo urls.py</span></span>
+<span id="cb149-2"><a href="#cb149-2"></a></span>
+<span id="cb149-3"><a href="#cb149-3"></a><span class="im">from</span> django.contrib <span class="im">import</span> admin</span>
+<span id="cb149-4"><a href="#cb149-4"></a><span class="im">from</span> django.urls <span class="im">import</span> path</span>
+<span id="cb149-5"><a href="#cb149-5"></a><span class="im">from</span> django.urls <span class="im">import</span> include <span class="co"># Agregamos el import de include para poder utilizarlo</span></span>
+<span id="cb149-6"><a href="#cb149-6"></a></span>
+<span id="cb149-7"><a href="#cb149-7"></a>urlpatterns <span class="op">=</span> [</span>
+<span id="cb149-8"><a href="#cb149-8"></a>    path(<span class="st">&#39;admin/&#39;</span>, admin.site.urls),</span>
+<span id="cb149-9"><a href="#cb149-9"></a>    path(<span class="st">&#39;catalog/&#39;</span>, include(<span class="st">&#39;catalog.urls&#39;</span>)) <span class="co"># Agregamos esta linea para conectar la vista</span></span>
+<span id="cb149-10"><a href="#cb149-10"></a>]</span></code></pre></div>
+</div>
+<div class="cell markdown">
+<p>Luego debemos abrir el <em>urls.py</em> del módulo de la aplicación y buscar la lista <code>urlpatterns</code>. Si no existe lo creamos.</p>
+</div>
+<div class="cell code">
+<div class="sourceCode" id="cb150"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb150-1"><a href="#cb150-1"></a><span class="co"># Archivo urls.py de la app</span></span>
+<span id="cb150-2"><a href="#cb150-2"></a></span>
+<span id="cb150-3"><a href="#cb150-3"></a>urlpatterns <span class="op">=</span> [</span>
+<span id="cb150-4"><a href="#cb150-4"></a></span>
+<span id="cb150-5"><a href="#cb150-5"></a>]</span></code></pre></div>
+</div>
+<section id="preparando-la-base-de-datos" class="cell markdown">
+<h2>Preparando la base de datos</h2>
+</section>
+<div class="cell markdown">
+<p>En la carpeta del proyecto general, ejecutamos:</p>
+<p><code>python3  manage.py makemigrations</code></p>
+</div>
+<div class="cell markdown">
+<p>Si muestra <code>no changes detected</code> es que no hemos ejecutados ningun cambio en los modelos.</p>
+<p>Entonces para inicializar la base de datos ejecutamos <code>python3  manage.py migrate</code></p>
+</div>
+<section id="crear-superuser" class="cell markdown">
+<h2>Crear SuperUser</h2>
+<p>Creamos un <em>superuser</em> para acceder al panel de administración de Django. En la carpeta del proyecto le pasamos el siguiente comando:</p>
+<p><code>python3  manage.py createsuperuser</code></p>
+<p>Llenamos los datos de usuario y contraseña y ya podemos entrar al panel de administración.</p>
+<p>localhost:8000/admin</p>
+</section>
+<section id="creación-de-los-modelos" class="cell markdown">
+<h2>Creación de los Modelos</h2>
+<p>Los modelos son las representaciones de datos de mi aplicación (Las tablas en la base de datos).</p>
+<p>Para ejemplificar estamos creando una web de librería. Por lo que tendremos un modelo género, un modelo autor, etc...</p>
+<p>Los modelos siempre se crean dentro de las aplicaciones en el fichero <em>models.py</em></p>
+</section>
+<div class="cell code">
+<div class="sourceCode" id="cb151"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb151-1"><a href="#cb151-1"></a><span class="im">from</span> django.db <span class="im">import</span> models</span>
+<span id="cb151-2"><a href="#cb151-2"></a></span>
+<span id="cb151-3"><a href="#cb151-3"></a><span class="kw">class</span> Genere (models.Model): <span class="co"># Los modelos siempre heredan de models.Model</span></span>
+<span id="cb151-4"><a href="#cb151-4"></a>    name <span class="op">=</span> models.CharField(max_length <span class="op">=</span> <span class="dv">64</span>, help_text <span class="op">=</span> <span class="st">&#39;Pon el nombre del genero&#39;</span>)</span>
+<span id="cb151-5"><a href="#cb151-5"></a>    <span class="co"># Campo de tipo CharField (Caracter) en la tabla Genere.</span></span>
+<span id="cb151-6"><a href="#cb151-6"></a>    <span class="co"># Los tipos Caracter tienen longitud max de 254 caracteres, podemos reducirla con max_length.</span></span>
+<span id="cb151-7"><a href="#cb151-7"></a>    <span class="co"># help_text muestra una especie de tooltip en el campo del formulario</span></span>
+<span id="cb151-8"><a href="#cb151-8"></a></span>
+<span id="cb151-9"><a href="#cb151-9"></a>    <span class="co"># sobrescribimos __str__ para que devuelva name como string. Así se muestra en el admin en el</span></span>
+<span id="cb151-10"><a href="#cb151-10"></a>    <span class="co"># resumen de la tabla</span></span>
+<span id="cb151-11"><a href="#cb151-11"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb151-12"><a href="#cb151-12"></a>        <span class="cf">return</span> <span class="va">self</span>.name</span></code></pre></div>
+</div>
+<div class="cell markdown">
+<p>Después de modificar el archivo <em>models.py</em> hay que ejecutar <code>python3  manage.py makemigrations</code> para preparar los cambios del comando <code>python3  manage.py migrate</code> que actualiza la base de datos.</p>
+</div>
+<div class="cell markdown">
+<p>Más ejemplos de modelos para asociar código con una tabla de la base de datos.</p>
+</div>
+<div class="cell code">
+<div class="sourceCode" id="cb152"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb152-1"><a href="#cb152-1"></a><span class="kw">class</span> book(models.Model):</span>
+<span id="cb152-2"><a href="#cb152-2"></a>    title <span class="op">=</span> models.CharField(max_length <span class="op">=</span> <span class="dv">32</span>)</span>
+<span id="cb152-3"><a href="#cb152-3"></a>    author <span class="op">=</span> models.ForeignKey(<span class="st">&#39;Author&#39;</span>, on_delete <span class="op">=</span> models.SET_NULL, null <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb152-4"><a href="#cb152-4"></a>    <span class="co"># La ForeignKey relaciona una campo de otra tabla con este campo</span></span>
+<span id="cb152-5"><a href="#cb152-5"></a>    <span class="co"># En este caso la tabla Author.</span></span>
+<span id="cb152-6"><a href="#cb152-6"></a>    <span class="co"># on_delete = models.SET_NULL dice en caso de borrar la referencia covierte el campo en NULL.</span></span>
+<span id="cb152-7"><a href="#cb152-7"></a>    <span class="co"># null = True para que el campo pueda aceptar valores null.</span></span>
+<span id="cb152-8"><a href="#cb152-8"></a></span>
+<span id="cb152-9"><a href="#cb152-9"></a>    summary <span class="op">=</span> models.TextField(max_length <span class="op">=</span> <span class="dv">100</span>, help_text<span class="op">=</span><span class="st">&#39;Pon de que trata el libro&#39;</span>)</span>
+<span id="cb152-10"><a href="#cb152-10"></a>    <span class="co"># TextField es un campo de texto con l&#39;imite infinito de caracteres.</span></span>
+<span id="cb152-11"><a href="#cb152-11"></a>    isbn <span class="op">=</span> models.CharField(<span class="st">&#39;ISBN&#39;</span>, max_length <span class="op">=</span> <span class="dv">13</span>, help_text <span class="op">=</span> <span class="st">&#39;El ISBN de 13 caracteres&#39;</span>) <span class="co"># Otra referencia</span></span>
+<span id="cb152-12"><a href="#cb152-12"></a>    genre <span class="op">=</span> models.ManyToManyField(Genere)</span>
+<span id="cb152-13"><a href="#cb152-13"></a>    <span class="co"># ManyToManyField me hace una relacion muchos a muchos. En este caso el libro puede tener varios generos.</span></span>
+<span id="cb152-14"><a href="#cb152-14"></a>    <span class="co"># Luego lo relaciono con la tabla Genere</span></span>
+<span id="cb152-15"><a href="#cb152-15"></a></span>
+<span id="cb152-16"><a href="#cb152-16"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb152-17"><a href="#cb152-17"></a>        <span class="cf">return</span> <span class="va">self</span>.title</span></code></pre></div>
+</div>
+<section id="permitiendo-al-panel-admin-de-django-que-maneje-los-nuevos-modelos" class="cell markdown">
+<h2>Permitiendo al panel admin de Django que maneje los nuevos modelos</h2>
+<p>Los modelos se registran para el admin dentro de las aplicaciones en el fichero <em>admin.py</em></p>
+</section>
+<div class="cell code">
+<div class="sourceCode" id="cb153"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb153-1"><a href="#cb153-1"></a><span class="im">from</span> django.contrib <span class="im">import</span> admin</span>
+<span id="cb153-2"><a href="#cb153-2"></a></span>
+<span id="cb153-3"><a href="#cb153-3"></a><span class="im">from</span> .models <span class="im">import</span> Author, Book, BookInstance, Genere <span class="co"># Importamos todos. También puede ser con *</span></span>
+<span id="cb153-4"><a href="#cb153-4"></a></span>
+<span id="cb153-5"><a href="#cb153-5"></a><span class="co"># Ahora registramos los modelos en el panel de daministración</span></span>
+<span id="cb153-6"><a href="#cb153-6"></a>admin.site.register(Author)</span>
+<span id="cb153-7"><a href="#cb153-7"></a>admin.site.register(Book)</span>
+<span id="cb153-8"><a href="#cb153-8"></a>admin.site.register(BookInstance)</span>
+<span id="cb153-9"><a href="#cb153-9"></a>admin.site.register(Genere)</span></code></pre></div>
+</div>
+<section id="mostrando-el-contenido-en-la-web" class="cell markdown">
+<h2>Mostrando el contenido en la web</h2>
+<p>Primero creamos la ruta en el archivo <em>urls.py</em> de la app (no del proyecto).</p>
+</section>
+<div class="cell code">
+<div class="sourceCode" id="cb154"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb154-1"><a href="#cb154-1"></a><span class="co"># Archivo urls.py</span></span>
+<span id="cb154-2"><a href="#cb154-2"></a></span>
+<span id="cb154-3"><a href="#cb154-3"></a><span class="im">from</span> django.urls <span class="im">import</span> path</span>
+<span id="cb154-4"><a href="#cb154-4"></a><span class="im">from</span> . <span class="im">import</span> views</span>
+<span id="cb154-5"><a href="#cb154-5"></a><span class="im">from</span> django.conf <span class="im">import</span> settings <span class="co"># Se agrega para usar en ruta static</span></span>
+<span id="cb154-6"><a href="#cb154-6"></a><span class="im">from</span> django.conf.urls.static <span class="im">import</span> static <span class="co"># Se agrega para importar la ruta static</span></span>
+<span id="cb154-7"><a href="#cb154-7"></a></span>
+<span id="cb154-8"><a href="#cb154-8"></a>urlpatterns <span class="op">=</span> [</span>
+<span id="cb154-9"><a href="#cb154-9"></a>    path(<span class="st">&#39;&#39;</span>, views.index, name<span class="op">=</span><span class="st">&#39;index&#39;</span>)</span>
+<span id="cb154-10"><a href="#cb154-10"></a>    <span class="co"># El primer parámetro es una expresión regular que dice que ejecute esta ruta si la dirección</span></span>
+<span id="cb154-11"><a href="#cb154-11"></a>    <span class="co"># después de /catalog/ está en blanco.</span></span>
+<span id="cb154-12"><a href="#cb154-12"></a>    <span class="co"># El segundo parámetro ejecuta la función index dentro de views.py (views.index).</span></span>
+<span id="cb154-13"><a href="#cb154-13"></a>    <span class="co"># Y con el tercer parámetro le damos el nombre de index</span></span>
+<span id="cb154-14"><a href="#cb154-14"></a></span>
+<span id="cb154-15"><a href="#cb154-15"></a>    <span class="co"># Después agragamos la ruta de la carpeta static donde van los css, js, assets, etc...</span></span>
+<span id="cb154-16"><a href="#cb154-16"></a>    <span class="co"># Esta carpeta &quot;static&quot; hay que crearla dentro de la carpeta de la app</span></span>
+<span id="cb154-17"><a href="#cb154-17"></a>] <span class="op">+</span> static(settings.STATIC_URL, document_root <span class="op">=</span> settings.STATIC_ROOT)</span></code></pre></div>
+</div>
+<div class="cell markdown">
+<p>Dentro del <em>views.py</em> de la app creamos la función con el nombre que le dimos en el segundo parámetro de la url. En este caso index.</p>
+</div>
+<div class="cell code">
+<div class="sourceCode" id="cb155"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb155-1"><a href="#cb155-1"></a><span class="co"># Archivo catalog/views.py</span></span>
+<span id="cb155-2"><a href="#cb155-2"></a></span>
+<span id="cb155-3"><a href="#cb155-3"></a><span class="im">from</span> django.shortcuts <span class="im">import</span> render</span>
+<span id="cb155-4"><a href="#cb155-4"></a><span class="im">from</span> .models <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb155-5"><a href="#cb155-5"></a></span>
+<span id="cb155-6"><a href="#cb155-6"></a><span class="kw">def</span> index(request): <span class="co"># Obligatoriamente recibe el parametro request</span></span>
+<span id="cb155-7"><a href="#cb155-7"></a>    <span class="co"># Empezamos a trabajar con el ORM de Django</span></span>
+<span id="cb155-8"><a href="#cb155-8"></a>    num_books <span class="op">=</span> Book.objects.<span class="bu">all</span>().count() <span class="co"># Esto cuenta los registros dentro de la tabla book</span></span>
+<span id="cb155-9"><a href="#cb155-9"></a>    num_instances <span class="op">=</span> BookInstance.objects.<span class="bu">all</span>().count() <span class="co"># Cuenta las reservas de libros</span></span>
+<span id="cb155-10"><a href="#cb155-10"></a>    num_authors <span class="op">=</span> Author.objects.<span class="bu">all</span>().count()</span>
+<span id="cb155-11"><a href="#cb155-11"></a></span>
+<span id="cb155-12"><a href="#cb155-12"></a>    disponibles <span class="op">=</span> BookInstance.objects.<span class="bu">filter</span>(status__exact <span class="op">=</span> <span class="st">&#39;a&#39;</span>).count()</span>
+<span id="cb155-13"><a href="#cb155-13"></a>    </span>
+<span id="cb155-14"><a href="#cb155-14"></a>    <span class="co"># Ahora hay que devolver un render</span></span>
+<span id="cb155-15"><a href="#cb155-15"></a>    <span class="cf">return</span> render(</span>
+<span id="cb155-16"><a href="#cb155-16"></a>        request,</span>
+<span id="cb155-17"><a href="#cb155-17"></a>        <span class="st">&#39;index.html&#39;</span>,</span>
+<span id="cb155-18"><a href="#cb155-18"></a>        <span class="co"># Luego tenemos que decir que datos estarán diponibles para la plantilla (en formato diccionario).</span></span>
+<span id="cb155-19"><a href="#cb155-19"></a>        <span class="co"># Estos son los que se acceden a través del HTML.</span></span>
+<span id="cb155-20"><a href="#cb155-20"></a>        context<span class="op">=</span>{</span>
+<span id="cb155-21"><a href="#cb155-21"></a>            <span class="st">&#39;num_books&#39;</span> : num_books,</span>
+<span id="cb155-22"><a href="#cb155-22"></a>            <span class="st">&#39;num_authors&#39;</span>: num_authors,</span>
+<span id="cb155-23"><a href="#cb155-23"></a>            <span class="st">&#39;num_instances&#39;</span> : num_instances,</span>
+<span id="cb155-24"><a href="#cb155-24"></a>            <span class="st">&#39;disponibles&#39;</span> : disponibles</span>
+<span id="cb155-25"><a href="#cb155-25"></a>        }</span>
+<span id="cb155-26"><a href="#cb155-26"></a>    )</span></code></pre></div>
+</div>
+<section id="creando-los-html" class="cell markdown">
+<h3>Creando los html</h3>
+<p>Dentro de la carpeta de la app creamos una carpeta con nombre <em>templates</em>. Ahí ponemos los html que se llaman como segundo parámetro del <code>return render()</code> en las vistas. Aquí podemos poner los <em>placeholders</em> que mostrarán el valor de las claves del diccionario <code>context</code> del tercer parámetro del <code>return render()</code>.</p>
+</section>
+<div class="cell markdown">
+<div class="sourceCode" id="cb156"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb156-1"><a href="#cb156-1"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
+<span id="cb156-2"><a href="#cb156-2"></a><span class="kw">&lt;html</span><span class="ot"> lang=</span><span class="st">&quot;es&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb156-3"><a href="#cb156-3"></a></span>
+<span id="cb156-4"><a href="#cb156-4"></a><span class="kw">&lt;head&gt;</span></span>
+<span id="cb156-5"><a href="#cb156-5"></a>    <span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&quot;UTF-8&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb156-6"><a href="#cb156-6"></a>    <span class="kw">&lt;meta</span><span class="ot"> http-equiv=</span><span class="st">&quot;X-UA-Compatible&quot;</span><span class="ot"> content=</span><span class="st">&quot;IE=edge&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb156-7"><a href="#cb156-7"></a>    <span class="kw">&lt;meta</span><span class="ot"> name=</span><span class="st">&quot;viewport&quot;</span><span class="ot"> content=</span><span class="st">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb156-8"><a href="#cb156-8"></a></span>
+<span id="cb156-9"><a href="#cb156-9"></a>    <span class="co">&lt;!-- CSS adicional en la carpeta static --&gt;</span></span>
+<span id="cb156-10"><a href="#cb156-10"></a>    {% load static %}</span>
+<span id="cb156-11"><a href="#cb156-11"></a>    <span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> href=</span><span class="st">&quot;{% static &#39;css/style.css&#39; %}&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb156-12"><a href="#cb156-12"></a></span>
+<span id="cb156-13"><a href="#cb156-13"></a>    <span class="kw">&lt;title&gt;</span>Django Test<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb156-14"><a href="#cb156-14"></a><span class="kw">&lt;/head&gt;</span></span>
+<span id="cb156-15"><a href="#cb156-15"></a></span>
+<span id="cb156-16"><a href="#cb156-16"></a><span class="kw">&lt;body&gt;</span></span>
+<span id="cb156-17"><a href="#cb156-17"></a>    <span class="kw">&lt;p&gt;</span></span>
+<span id="cb156-18"><a href="#cb156-18"></a>        Cantidad de libros: {{ num_books }} </span>
+<span id="cb156-19"><a href="#cb156-19"></a>        <span class="kw">&lt;br&gt;</span></span>
+<span id="cb156-20"><a href="#cb156-20"></a>        Cantidad de autores: {{ num_authors }} </span>
+<span id="cb156-21"><a href="#cb156-21"></a>        <span class="kw">&lt;br&gt;</span></span>
+<span id="cb156-22"><a href="#cb156-22"></a>        Cantidad de libros: {{ num_instances }}</span>
+<span id="cb156-23"><a href="#cb156-23"></a>        <span class="kw">&lt;br&gt;</span></span>
+<span id="cb156-24"><a href="#cb156-24"></a>        Disponibles para alquiler: {{ disponibles }}</span>
+<span id="cb156-25"><a href="#cb156-25"></a>    <span class="kw">&lt;/p&gt;</span></span>
+<span id="cb156-26"><a href="#cb156-26"></a></span>
+<span id="cb156-27"><a href="#cb156-27"></a><span class="kw">&lt;/body&gt;</span></span>
+<span id="cb156-28"><a href="#cb156-28"></a></span>
+<span id="cb156-29"><a href="#cb156-29"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
+</div>
+</body>
+</html>
